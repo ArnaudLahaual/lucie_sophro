@@ -1,12 +1,26 @@
 import { Form, Input, Select, Button } from "antd";
 import "./Contact.css";
+import axiosInstance from "../../api/axiosconfig";
+// import { useSnackbar } from "notistack";
 
 export function Contact() {
+  //   const navigate = useNavigate();
   const [form] = Form.useForm();
+//   const { enqueueSnackbar } = useSnackbar();
 
   const handleValidateForm = (values: any) => {
-    console.log("data du formulaire:", values);
-    form.resetFields();
+    console.log("values:", values);
+
+    axiosInstance
+      .post("/contact", values)
+      .then((resp) => {
+        console.log(resp);
+        // enqueueSnackbar("Message envoyé avec succès !", {
+        //   variant: "success",
+        // });
+        form.resetFields();
+      })
+      .catch(() => {});
   };
 
   const subjectOptions = [
@@ -58,6 +72,17 @@ export function Contact() {
           </Form.Item>
 
           <Form.Item
+            label="Téléphone"
+            name="phone"
+            rules={[
+              { required: true, message: "Numéro obligatoire" },
+              { pattern: /^[0-9+ ]+$/, message: "Numéro invalide" },
+            ]}
+          >
+            <Input type="tel" placeholder="Veuillez indiquer votre téléphone" />
+          </Form.Item>
+
+          <Form.Item
             label="Sujet de vôtre demande"
             name="subject"
             rules={[{ required: true, message: "Choisissez un sujet" }]}
@@ -71,7 +96,7 @@ export function Contact() {
 
           <Form.Item
             name="message"
-            label="Message"
+            label="message"
             rules={[
               { required: true, message: "Veuillez renseigner votre demande" },
             ]}
