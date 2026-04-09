@@ -1,0 +1,119 @@
+.home-container {
+  min-height: 100vh;
+  padding: 80px 20px 20px 20px;
+  background: #f8f5f0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  text-align: center;
+}
+
+.hero {
+  background-color: #b89878;
+  color: white;
+  border-radius: 15px;
+  padding: 40px 20px;
+  width: 100%;
+  max-width: 600px;
+  margin-bottom: 30px;
+}
+
+.hero .name {
+  font-size: 32px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.hero .slogan {
+  font-size: 24px;
+  font-weight: 500;
+  color: #f8f5f0;
+  margin-bottom: 8px;
+}
+
+.hero .subtitle {
+  font-size: 18px;
+  color: white;
+}
+
+/* Texte du Home sous le hero */
+.home-container p {
+  color: #6b6b6b;
+  max-width: 600px; /* augmente max-width pour desktop */
+  margin-bottom: 20px;
+}
+
+/* Bouton */
+.cta-home {
+  background-color: #b89878;
+  color: white;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+.cta-home:hover {
+  background-color: #a6846a;
+}
+
+/* Tablette */
+@media (min-width: 768px) {
+  .home-container {
+    padding: 90px 20px 20px 20px;
+  }
+
+  .hero {
+    padding: 50px 30px;
+    max-width: 650px;
+  }
+
+  .hero .name {
+    font-size: 36px;
+  }
+
+  .hero .slogan {
+    font-size: 28px;
+  }
+
+  .hero .subtitle {
+    font-size: 20px;
+  }
+
+  .home-container p {
+    font-size: 18px;
+  }
+
+  .cta-home {
+    font-size: 18px;
+    padding: 14px 30px;
+  }
+}
+
+/* Desktop */
+@media (min-width: 1024px) {
+  .hero {
+    max-width: 700px;
+    padding: 60px 40px;
+  }
+
+  .hero .name {
+    font-size: 42px;
+  }
+
+  .hero .slogan {
+    font-size: 32px;
+  }
+
+  .hero .subtitle {
+    font-size: 22px;
+  }
+
+  .home-container p {
+    font-size: 20px;
+    max-width: 700px;
+  }
+}

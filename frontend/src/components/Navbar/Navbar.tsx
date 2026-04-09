@@ -1,6 +1,6 @@
 import { useState } from "react";
-import "./Navbar.css";
 import { Link } from "react-router-dom";
+import "./Navbar.css";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
@@ -16,18 +16,26 @@ export default function Navbar() {
           </div>
         </button>
 
-        <span className="home">Sophrologie Lucie</span>
+        <span className="home">Lucie Bordeyne</span>
       </div>
 
       <div className={`menu ${open ? "open" : ""}`}>
-        <Link to="/" className="home">
+        <Link to="/" onClick={() => setOpen(false)}>
           Accueil
-        </Link>{" "}
-        <a href="/projets">Projets</a>
-        <a href="/contact">Contact</a>
-        <a href="/reservation" className="cta">
-          Réserver
-        </a>
+        </Link>
+        <Link to="/projets" onClick={() => setOpen(false)}>
+          Mes spécialités
+        </Link>
+        <Link to="/projets" onClick={() => setOpen(false)}>
+          Réservations
+        </Link>
+        <Link to="/contact" onClick={() => setOpen(false)}>
+          Contact
+        </Link>
+        <Link to="/projets" onClick={() => setOpen(false)}>
+          Mentions légales
+        </Link>
+        {/* <Link to="/reservation" className="cta-nav" onClick={() => setOpen(false)}>Réserver</Link> */}
       </div>
     </nav>
   );
