@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import "./Navbar.css";
 
 export default function Navbar() {
@@ -33,9 +33,14 @@ export default function Navbar() {
 
       <div className={`menu ${open ? "open" : ""}`}>
         {links.map((link) => (
-          <Link key={link.path} to={link.path} onClick={handleCloseNavBar}>
+          <NavLink
+            key={link.path}
+            to={link.path}
+            onClick={handleCloseNavBar}
+            className={({ isActive }) => (isActive ? "active-link" : "")}
+          >
             {link.label}
-          </Link>
+          </NavLink>
         ))}
       </div>
     </nav>

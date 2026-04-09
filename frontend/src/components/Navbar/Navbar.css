@@ -88,9 +88,13 @@
   font-size: 16px;
 }
 
-/* .menu a:hover {
+.menu a:hover {
   color: #f98786;
-} */
+}
+.active-link {
+  color: #f98786;
+  font-weight: bold;
+}
 
 .cta-nav {
   background: #f98786;
