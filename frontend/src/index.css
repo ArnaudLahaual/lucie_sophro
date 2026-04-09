@@ -30,3 +30,7 @@ h1 {
 p {
   color: #6b6b6b;
 }
+
+.app-content {
+  padding-top: 70px;
+}
