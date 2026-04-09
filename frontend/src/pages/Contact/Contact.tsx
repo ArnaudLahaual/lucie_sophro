@@ -6,6 +6,7 @@ export function Contact() {
 
   const handleValidateForm = (values: any) => {
     console.log("data du formulaire:", values);
+    form.resetFields();
   };
 
   const subjectOptions = [
@@ -57,7 +58,7 @@ export function Contact() {
           </Form.Item>
 
           <Form.Item
-            label="Sujet"
+            label="Sujet de vôtre demande"
             name="subject"
             rules={[{ required: true, message: "Choisissez un sujet" }]}
           >
