@@ -83,7 +83,7 @@ export function Contact() {
           </Form.Item>
 
           <Form.Item
-            label="Sujet de vôtre demande"
+            label="Sujet de votre demande"
             name="subject"
             rules={[{ required: true, message: "Choisissez un sujet" }]}
           >
