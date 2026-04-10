@@ -45,6 +45,17 @@
   background-color: #a88466 !important;
 }
 
+.success-card {
+  text-align: center;
+}
+
+.success-actions {
+  margin-top: 20px;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
 
 /* TABLETTE */
 @media (min-width: 768px) {
@@ -58,7 +69,6 @@
     margin: 0 auto;
   }
 }
-
 
 /* DESKTOP */
 @media (min-width: 1024px) {

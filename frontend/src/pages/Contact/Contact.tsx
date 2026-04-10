@@ -1,26 +1,34 @@
 import { Form, Input, Select, Button } from "antd";
 import "./Contact.css";
 import axiosInstance from "../../api/axiosconfig";
-// import { useSnackbar } from "notistack";
+import { useState } from "react";
+import Loader from "../../components/Loader/Loader";
+import { useSnackbar } from "notistack";
+import { useNavigate } from "react-router-dom";
 
 export function Contact() {
-  //   const navigate = useNavigate();
+  const navigate = useNavigate();
   const [form] = Form.useForm();
-//   const { enqueueSnackbar } = useSnackbar();
-
+  const [loading, setLoading] = useState<boolean>(false);
+  const [isSuccess, setIsSuccess] = useState<boolean>(false);
+  const { enqueueSnackbar } = useSnackbar();
   const handleValidateForm = (values: any) => {
-    console.log("values:", values);
-
+    setLoading(true);
     axiosInstance
       .post("/contact", values)
       .then((resp) => {
         console.log(resp);
-        // enqueueSnackbar("Message envoyé avec succès !", {
-        //   variant: "success",
-        // });
+        enqueueSnackbar("Votre message a bien été envoyé ! ", {
+          variant: "success",
+        });
         form.resetFields();
+        setIsSuccess(true);
+        setLoading(false);
       })
-      .catch(() => {});
+      .catch(() => {
+        enqueueSnackbar("Une erreur est survenue.", { variant: "error" });
+        setLoading(false);
+      });
   };
 
   const subjectOptions = [
@@ -29,6 +37,43 @@ export function Contact() {
     { value: "other", label: "Autre" },
   ];
 
+  const handleResetForm = () => {
+    setIsSuccess(false);
+  };
+
+  const handleBackHome = () => {
+    setIsSuccess(false);
+    navigate("/");
+  };
+
+  if (isSuccess) {
+    return (
+      <div className="contact-page">
+        <div className="contact-card success-card">
+          <p className="contact-card-text">
+            Merci pour votre message.<br></br> Je vous remercie de votre
+            confiance et vous recontacterai très prochainement afin d’échanger
+            sur votre demande en toute sérénité.<br></br>
+            Mme Bordeyne
+          </p>
+
+          <div className="success-actions">
+            <Button
+              type="primary"
+              className="cta-btn"
+              onClick={handleResetForm}
+            >
+              Envoyer un autre message
+            </Button>
+
+            <Button type="primary" className="cta-btn" onClick={handleBackHome}>
+              Retour à l’accueil
+            </Button>
+          </div>
+        </div>
+      </div>
+    );
+  }
   return (
     <div className="contact-page">
       <div className="contact-card">
@@ -110,12 +155,18 @@ export function Contact() {
           </Form.Item>
 
           <Form.Item>
-            <Button type="primary" htmlType="submit" className="cta-btn">
+            <Button
+              type="primary"
+              htmlType="submit"
+              className="cta-btn"
+              loading={loading}
+            >
               Envoyer
             </Button>
           </Form.Item>
         </Form>
       </div>
+      {loading && <Loader />}
     </div>
   );
 }
