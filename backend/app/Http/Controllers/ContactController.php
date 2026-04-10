@@ -38,7 +38,7 @@ class ContactController extends Controller
             new ContactMessageReceived($contactMessage)
         );
 
-        //mail user
+        //mail user a ajouter en PROD ! 
         // Mail::to($contactMessage->email)->send(
         //     new ContactMessageConfirmation($contactMessage)
         // );
