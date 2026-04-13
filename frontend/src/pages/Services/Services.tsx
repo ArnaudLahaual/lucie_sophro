@@ -4,15 +4,16 @@ import ChildCareIcon from "@mui/icons-material/ChildCare";
 import ElderlyIcon from "@mui/icons-material/Elderly";
 import PsychologyIcon from "@mui/icons-material/Psychology";
 import SpaIcon from "@mui/icons-material/Spa";
-import EuroIcon from "@mui/icons-material/Euro";
 
 export default function Services() {
   return (
     <div className="services-container">
-      <h1 className="services-title">Mes accompagnements</h1>
-      <p className="services-subtitle">
-        Un accompagnement adapté à chacun, à chaque étape de la vie
-      </p>
+      <div className="about-hero">
+        <h1>Mes accompagnements</h1>
+        <p className="services-subtitle">
+          Un accompagnement adapté à chacun, à chaque étape de la vie
+        </p>
+      </div>
 
       {/* POUR QUI */}
       <section className="services-section">
@@ -42,12 +43,30 @@ export default function Services() {
       <section className="services-section">
         <h2>Problématiques accompagnées</h2>
         <div className="services-grid">
-          <div className="card"><PsychologyIcon className="icon" /><p>Stress et anxiété</p></div>
-          <div className="card"><SpaIcon className="icon" /><p>Troubles du sommeil</p></div>
-          <div className="card"><PsychologyIcon className="icon" /><p>Gestion des émotions</p></div>
-          <div className="card"><SelfImprovementIcon className="icon" /><p>Confiance en soi</p></div>
-          <div className="card"><SpaIcon className="icon" /><p>Fatigue mentale et physique</p></div>
-          <div className="card"><PsychologyIcon className="icon" /><p>Préparation (examens…)</p></div>
+          <div className="card">
+            <PsychologyIcon className="icon" />
+            <p>Stress et anxiété</p>
+          </div>
+          <div className="card">
+            <SpaIcon className="icon" />
+            <p>Troubles du sommeil</p>
+          </div>
+          <div className="card">
+            <PsychologyIcon className="icon" />
+            <p>Gestion des émotions</p>
+          </div>
+          <div className="card">
+            <SelfImprovementIcon className="icon" />
+            <p>Confiance en soi</p>
+          </div>
+          <div className="card">
+            <SpaIcon className="icon" />
+            <p>Fatigue mentale et physique</p>
+          </div>
+          <div className="card">
+            <PsychologyIcon className="icon" />
+            <p>Préparation (examens…)</p>
+          </div>
         </div>
       </section>
 
@@ -75,17 +94,14 @@ export default function Services() {
         <h2>Tarifs</h2>
         <div className="pricing">
           <div className="price-card">
-            <EuroIcon className="icon" />
             <p>Séance individuelle</p>
             <span>50 €</span>
           </div>
           <div className="price-card">
-            <EuroIcon className="icon" />
             <p>Séance enfant</p>
             <span>45 €</span>
           </div>
           <div className="price-card">
-            <EuroIcon className="icon" />
             <p>Séance groupe</p>
             <span>Sur demande</span>
           </div>
@@ -95,8 +111,12 @@ export default function Services() {
       {/* INFOS */}
       <section className="services-section info">
         <h2>Informations</h2>
-        <p><strong>Durée :</strong> 1h</p>
-        <p><strong>Règlement :</strong> espèces / cb / chèque</p>
+        <p>
+          <strong>Durée :</strong> 1h
+        </p>
+        <p>
+          <strong>Règlement :</strong> espèces / cb / chèque
+        </p>
       </section>
     </div>
   );

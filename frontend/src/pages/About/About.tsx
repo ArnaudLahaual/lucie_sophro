@@ -1,6 +1,10 @@
 import "./About.css";
+import { useNavigate } from "react-router-dom";
+import luciePhoto from "../../assets/lucie.jpg";
 
 export default function About() {
+  const navigate = useNavigate();
+
   return (
     <div className="about-container">
       <main>
@@ -9,32 +13,36 @@ export default function About() {
           <h1>Qui suis-je ?</h1>
         </div>
 
-        {/* SECTION 1 */}
-        <div className="about-card">
-          <p>
-            Je m’appelle <strong>Lucie Bordeyne</strong>, sophrologue formée à
-            l’IFS.
-          </p>
+        <section className="about-split">
+          <div className="about-image">
+            <img src={luciePhoto} alt="Lucie Bordeyne" />
+          </div>
 
-          <p>
-            Passionnée par l’accompagnement humain, j’ai choisi la sophrologie
-            pour aider chacun à retrouver ses ressources, apaiser ses tensions
-            et avancer plus sereinement dans sa vie.
-          </p>
+          <div className="about-text">
+            <p>
+              Je m’appelle <strong>Lucie Bordeyne</strong>, sophrologue formée à
+              l’IFS.
+            </p>
 
-          <p>
-            Mon approche est basée sur <strong>l’écoute</strong>, la{" "}
-            <strong>bienveillance</strong> et l’adaptation à chaque personne.
-          </p>
+            <p>
+              Passionnée par l’accompagnement humain, j’ai choisi la sophrologie
+              pour aider chacun à retrouver ses ressources, apaiser ses tensions
+              et avancer plus sereinement dans sa vie.
+            </p>
 
-          <p>
-            Chaque séance est un moment pour vous, un espace de pause et de
-            reconnexion à vous-même.
-          </p>
-        </div>
+            <p>
+              Mon approche est basée sur <strong>l’écoute</strong>, la{" "}
+              <strong>bienveillance</strong> et l’adaptation à chaque personne.
+            </p>
 
-        {/* SECTION 2 */}
-        <div className="about-card highlight">
+            <p>
+              Chaque séance est un moment pour vous, un espace de pause et de
+              reconnexion à vous-même.
+            </p>
+          </div>
+        </section>
+
+        <section className="about-card highlight">
           <h2>Ma vision</h2>
 
           <p>
@@ -51,10 +59,9 @@ export default function About() {
             La sophrologie est une méthode douce, accessible à tous, qui permet
             de se reconnecter à soi et de retrouver un équilibre durable.
           </p>
-        </div>
+        </section>
 
-        {/* SECTION 3 */}
-        <div className="about-card">
+        <section className="about-card">
           <h2>Un chemin personnel devenu une vocation</h2>
 
           <p>
@@ -73,12 +80,13 @@ export default function About() {
           <p>
             Aujourd’hui, je mets cette expérience au cœur de mon accompagnement.
           </p>
-        </div>
+        </section>
 
-        {/* CTA */}
         <div className="about-cta">
           <p>Envie de prendre soin de vous ?</p>
-          <button className="cta-btn">Prendre rendez-vous</button>
+          <button className="cta-btn" onClick={() => navigate("/reservations")}>
+            Prendre rendez-vous
+          </button>
         </div>
       </main>
     </div>

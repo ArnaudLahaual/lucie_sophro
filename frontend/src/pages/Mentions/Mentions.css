@@ -1,0 +1,63 @@
+.mentions-container {
+  min-height: 100vh;
+  padding: 80px 20px 40px 20px;
+  background: #f8f5f0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* HERO */
+.mentions-hero {
+  background-color: #b89878;
+  color: white;
+  border-radius: 15px;
+  padding: 40px 20px;
+  width: 100%;
+  max-width: 900px;
+  margin-bottom: 40px;
+  text-align: center;
+}
+
+.mentions-hero h1 {
+  font-size: 30px;
+  color: #f8f5f0;
+}
+
+/* CARD */
+.mentions-card {
+  background: white;
+  border-radius: 15px;
+  padding: 25px;
+  margin-bottom: 20px;
+  max-width: 900px;
+  width: 100%;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  transition: 0.3s ease;
+}
+
+.mentions-card:hover {
+  transform: translateY(-3px);
+}
+
+.mentions-card h2 {
+  color: #b89878;
+  margin-bottom: 10px;
+}
+
+.mentions-card p {
+  color: #6b6b6b;
+  line-height: 1.6;
+  margin-bottom: 10px;
+}
+
+/* DESKTOP */
+@media (min-width: 1024px) {
+  .mentions-hero h1 {
+    font-size: 36px;
+  }
+
+  .mentions-card p {
+    font-size: 18px;
+  }
+}
