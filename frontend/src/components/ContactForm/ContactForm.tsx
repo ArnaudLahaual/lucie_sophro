@@ -11,22 +11,27 @@ export default function ContactForm({ onSuccess }: any) {
   const [loading, setLoading] = useState<boolean>(false);
   const { enqueueSnackbar } = useSnackbar();
 
-  const handleValidateForm = (values: any) => {
+  const handleValidateForm = async (values: any) => {
+    if (loading) return;
+
     setLoading(true);
-    axiosInstance
-      .post("/contact", values)
-      .then((resp) => {
-        console.log(resp);
-        enqueueSnackbar("Votre message a bien été envoyé ! ", {
-          variant: "success",
-        });
-        onSuccess();
-        form.resetFields();
-      })
-      .catch(() => {
-        enqueueSnackbar("Une erreur est survenue.", { variant: "error" });
-        setLoading(false);
+
+    try {
+      await axiosInstance.post("/contact", values);
+
+      enqueueSnackbar("Votre message a bien été envoyé !", {
+        variant: "success",
       });
+
+      form.resetFields();
+      onSuccess?.();
+    } catch (e) {
+      enqueueSnackbar("Une erreur est survenue.", {
+        variant: "error",
+      });
+    } finally {
+      setLoading(false);
+    }
   };
 
   const subjectOptions = [
@@ -39,9 +44,9 @@ export default function ContactForm({ onSuccess }: any) {
     <div className="contact-page">
       <div className="contact-card">
         <p className="contact-card-text">
-          Une question, une demande ou une prise de rendez-vous ?<br></br> Je
-          vous invite à remplir le formulaire ci-dessous. Je vous répondrai avec
-          plaisir dans les meilleurs délais.
+          Une question, une demande ou une prise de rendez-vous ?
+          <br></br> Je vous invite à remplir le formulaire ci-dessous. Je vous
+          répondrai avec plaisir dans les meilleurs délais.
         </p>
 
         <Form form={form} layout="vertical" onFinish={handleValidateForm}>
@@ -102,7 +107,7 @@ export default function ContactForm({ onSuccess }: any) {
 
           <Form.Item
             name="message"
-            label="message"
+            label="Message"
             rules={[
               { required: true, message: "Veuillez renseigner votre demande" },
             ]}
@@ -116,12 +121,7 @@ export default function ContactForm({ onSuccess }: any) {
           </Form.Item>
 
           <Form.Item>
-            <Button
-              type="primary"
-              htmlType="submit"
-              className="cta-btn"
-              loading={loading}
-            >
+            <Button type="primary" htmlType="submit" className="cta-btn">
               Envoyer
             </Button>
           </Form.Item>

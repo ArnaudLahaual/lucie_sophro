@@ -10,6 +10,7 @@ export default function Navbar() {
     { path: "/services", label: "Mes spécialités" },
     { path: "/reservations", label: "Réservations" },
     { path: "/contact", label: "Contact" },
+    { path: "/about", label: "A propos" },
     { path: "/mentions", label: "Mentions légales" },
   ];
 

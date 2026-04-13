@@ -1,74 +1,116 @@
 .home-container {
   min-height: 100vh;
-  padding: 80px 20px 20px 20px;
+  padding: 80px 20px 40px 20px;
   background: #f8f5f0;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
   align-items: center;
   text-align: center;
 }
 
+/* HERO */
 .hero {
-  background-color: #b89878;
+  background: linear-gradient(135deg, #b89878, #c9a98a);
   color: white;
-  border-radius: 15px;
+  border-radius: 20px;
   padding: 40px 20px;
   width: 100%;
-  max-width: 600px;
+  max-width: 650px;
   margin-bottom: 30px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
 }
 
 .hero .name {
-  font-size: 32px;
+  font-size: 30px;
   font-weight: bold;
   margin-bottom: 10px;
 }
 
 .hero .slogan {
-  font-size: 24px;
+  font-size: 22px;
   font-weight: 500;
-  color: #f8f5f0;
-  margin-bottom: 8px;
+  margin-bottom: 10px;
 }
 
 .hero .subtitle {
-  font-size: 18px;
-  color: white;
+  font-size: 16px;
+  opacity: 0.95;
 }
 
-/* Texte du Home sous le hero */
-.home-container p {
-  color: #6b6b6b;
-  max-width: 600px; /* augmente max-width pour desktop */
-  margin-bottom: 20px;
+/* INTRO */
+.intro {
+  max-width: 650px;
+  color: #5e5e5e;
+  margin-bottom: 30px;
 }
 
-/* Bouton */
+.intro p {
+  margin-bottom: 15px;
+  line-height: 1.6;
+}
+
+/* BENEFITS */
+.benefits {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 15px;
+  margin: 30px 0;
+  width: 100%;
+  max-width: 600px;
+}
+
+.benefit {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  background: white;
+  padding: 15px;
+  border-radius: 12px;
+  color: #5a5a5a;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+  cursor: default;
+}
+
+/* Icône */
+.benefit-icon {
+  color: #b89878;
+  font-size: 28px !important;
+}
+
+/* Hover smooth */
+.benefit:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(184, 152, 120, 0.2);
+  background: #fdfaf6;
+}
+
+/* CTA */
 .cta-home {
   background-color: #b89878;
   color: white;
   border: none;
-  padding: 12px 25px;
-  border-radius: 25px;
+  padding: 14px 28px;
+  border-radius: 30px;
   cursor: pointer;
   font-size: 16px;
-  transition: background-color 0.3s ease;
+  transition: all 0.3s ease;
 }
 
 .cta-home:hover {
   background-color: #a6846a;
+  transform: translateY(-2px);
 }
 
-/* Tablette */
+/* TABLETTE */
 @media (min-width: 768px) {
-  .home-container {
-    padding: 90px 20px 20px 20px;
-  }
-
   .hero {
     padding: 50px 30px;
-    max-width: 650px;
+  }
+  .benefits {
+    grid-template-columns: 1fr 1fr;
+    max-width: 700px;
   }
 
   .hero .name {
@@ -76,27 +118,26 @@
   }
 
   .hero .slogan {
-    font-size: 28px;
+    font-size: 26px;
   }
 
   .hero .subtitle {
-    font-size: 20px;
+    font-size: 18px;
   }
 
-  .home-container p {
-    font-size: 18px;
+  .benefits {
+    grid-template-columns: 1fr 1fr;
   }
 
   .cta-home {
     font-size: 18px;
-    padding: 14px 30px;
   }
 }
 
-/* Desktop */
+/* DESKTOP */
 @media (min-width: 1024px) {
   .hero {
-    max-width: 700px;
+    max-width: 750px;
     padding: 60px 40px;
   }
 
@@ -105,15 +146,21 @@
   }
 
   .hero .slogan {
-    font-size: 32px;
+    font-size: 30px;
   }
 
   .hero .subtitle {
-    font-size: 22px;
+    font-size: 20px;
   }
 
-  .home-container p {
-    font-size: 20px;
-    max-width: 700px;
+  .intro {
+    font-size: 18px;
+  }
+
+  .benefit {
+    font-size: 16px;
+  }
+  .benefits {
+    max-width: 800px;
   }
 }

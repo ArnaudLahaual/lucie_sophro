@@ -10,7 +10,7 @@ export default function SuccessMessage({ onReset }: any) {
         <p className="contact-card-text">
           Merci pour votre message.
           <br />
-          Je vous recontacterai très prochainement en toute sérénité.
+          Je vous recontacterai très prochainement.
           <br />
           Mme Bordeyne
         </p>

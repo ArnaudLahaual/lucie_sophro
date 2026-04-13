@@ -1,0 +1,138 @@
+.services-container {
+  padding: 80px 20px;
+  background: #f8f5f0;
+  text-align: center;
+}
+
+.services-title {
+  font-size: 32px;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.services-subtitle {
+  color: #777;
+  margin-bottom: 40px;
+}
+
+.services-section {
+  margin-bottom: 50px;
+}
+
+.services-section h2 {
+  margin-bottom: 20px;
+  color: #b89878;
+}
+
+/* GRID */
+.services-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 15px;
+}
+
+/* CARD */
+.card {
+  background: white;
+  border-radius: 15px;
+  padding: 20px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.card .icon {
+  font-size: 30px;
+  color: #b89878;
+  margin-bottom: 10px;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+/* TEXT */
+.services-text {
+  margin-top: 20px;
+  color: #666;
+}
+
+/* STEPS */
+.steps {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 15px;
+}
+
+.step {
+  background: white;
+  padding: 15px;
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.step span {
+  background: #b89878;
+  color: white;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* PRICING */
+.pricing {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 15px;
+}
+
+.price-card {
+  background: white;
+  border-radius: 15px;
+  padding: 20px;
+  transition: 0.3s;
+}
+
+.price-card span {
+  display: block;
+  margin-top: 10px;
+  font-weight: bold;
+  color: #b89878;
+}
+
+.price-card:hover {
+  transform: scale(1.05);
+}
+
+/* INFO */
+.info p {
+  color: #555;
+}
+
+/* TABLETTE */
+@media (min-width: 768px) {
+  .services-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .pricing {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .steps {
+    flex-direction: row;
+  }
+}
+
+/* DESKTOP */
+@media (min-width: 1024px) {
+  .services-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
