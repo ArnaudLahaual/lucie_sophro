@@ -8,62 +8,68 @@ export default function Home() {
   return (
     <div className="home-container">
       <main>
-        {/* HERO */}
-        <div className="hero">
-          <div className="name">Lucie Bordeyne</div>
-          <div className="slogan">
-            Retrouvez votre équilibre intérieur grâce à la sophrologie
-          </div>
-          <div className="subtitle">
-            Gestion du stress • Apaisement • Confiance • Bien-être
-          </div>
-        </div>
+        <section className="hero">
+          <div className="hero-content">
+            <span className="badge">Sophrologie & Bien-être</span>
 
-        {/* PRESENTATION */}
+            <h1>
+              Retrouvez votre <span>équilibre</span> intérieur
+            </h1>
+
+            <p className="hero-desc">
+              Je suis <strong>Lucie Bordeyne</strong>, sophrologue, et je vous
+              accompagne vers plus de sérénité et de bien-être.
+            </p>
+
+            <div className="hero-buttons">
+              <button className="cta-home">Prendre rendez-vous</button>
+              <button className="cta-secondary">Découvrir</button>
+            </div>
+          </div>
+        </section>
+
         <section className="intro">
           <p>
             Je suis <strong>Lucie Bordeyne</strong>, sophrologue, et
-            j’accompagne enfants, adultes et seniors dans la gestion du stress,
-            des émotions et des tensions du quotidien.
+            j’accompagne enfants, adultes et seniors dans la gestion du stress.
           </p>
-
           <p>
-            Grâce à des techniques simples de respiration, de relaxation et de
-            visualisation, vous apprenez à vous reconnecter à vous-même et à
-            retrouver un équilibre intérieur.
+            Grâce à des techniques simples, vous retrouvez un équilibre
+            intérieur.
           </p>
-
-          <p>
-            Je vous accompagne avec douceur et bienveillance pour retrouver un
-            mieux-être durable, à votre rythme.
-          </p>
+          <p>Un accompagnement doux et adapté à votre rythme.</p>
         </section>
 
-        {/* POINTS FORTS */}
-        <div className="benefits">
+        <section className="benefits">
           <div className="benefit">
             <PersonIcon className="benefit-icon" />
-            <span>Accompagnement personnalisé</span>
+            <h3>Accompagnement personnalisé</h3>
+            <p>Adapté à vos besoins</p>
           </div>
 
           <div className="benefit">
             <SpaIcon className="benefit-icon" />
-            <span>Méthode douce et accessible</span>
+            <h3>Méthode douce</h3>
+            <p>Accessible à tous</p>
           </div>
 
           <div className="benefit">
             <SelfImprovementIcon className="benefit-icon" />
-            <span>Séances adaptées à votre rythme</span>
+            <h3>À votre rythme</h3>
+            <p>Progressif et efficace</p>
           </div>
 
           <div className="benefit">
             <GroupsIcon className="benefit-icon" />
-            <span>Enfants • Adultes • Seniors</span>
+            <h3>Tout public</h3>
+            <p>Enfants • Adultes • Seniors</p>
           </div>
-        </div>
+        </section>
 
-        {/* CTA */}
-        <button className="cta-home">Prendre rendez-vous</button>
+        <section className="cta-section">
+          <h2>Prêt à vous sentir mieux ?</h2>
+          <button className="cta-home">Réserver une séance</button>
+        </section>
       </main>
     </div>
   );

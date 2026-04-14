@@ -6,12 +6,11 @@ export default function Navbar() {
   const [open, setOpen] = useState(false);
 
   const links = [
-    { path: "/", label: "Accueil" },
-    { path: "/services", label: "Mes spécialités" },
-    { path: "/reservations", label: "Réservations" },
-    { path: "/contact", label: "Contact" },
-    { path: "/about", label: "A propos" },
-    { path: "/mentions", label: "Mentions légales" },
+    { path: "/", label: "HOME" },
+    { path: "/services", label: "SPECIALITES" },
+    { path: "/reservations", label: "BOOKING" },
+    { path: "/contact", label: "CONTACT" },
+    { path: "/about", label: "A PROPOS" },
   ];
 
   const handleCloseNavBar = () => {
@@ -38,12 +37,15 @@ export default function Navbar() {
             key={link.path}
             to={link.path}
             onClick={handleCloseNavBar}
-            className={({ isActive }) => (isActive ? "active-link" : "")}
+            className={({ isActive }) =>
+              isActive ? "nav-link active-link" : "nav-link"
+            }
           >
             {link.label}
           </NavLink>
         ))}
       </div>
+      <button className="cta-home">Prendre rendez-vous</button>
     </nav>
   );
 }
