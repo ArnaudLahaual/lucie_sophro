@@ -3,8 +3,10 @@ import PersonIcon from "@mui/icons-material/Person";
 import SpaIcon from "@mui/icons-material/Spa";
 import SelfImprovementIcon from "@mui/icons-material/SelfImprovement";
 import GroupsIcon from "@mui/icons-material/Groups";
+import { useNavigate } from "react-router-dom";
 
 export default function Home() {
+  const navigate = useNavigate();
   return (
     <div className="home-container">
       <main>
@@ -17,27 +19,30 @@ export default function Home() {
             </h1>
 
             <p className="hero-desc">
-              Je suis <strong>Lucie Bordeyne</strong>, sophrologue, et je vous
-              accompagne vers plus de sérénité et de bien-être.
+              Je suis <strong>Lucie Bordeyne</strong>, sophrologue, j’accompagne
+              enfants, adultes et seniors dans la gestion du stress.
+            </p>
+            <p>
+              Grâce à des techniques simples de respiration, de relaxation et de
+              visualisation, vous apprenez à vous reconnecter à vous-même et à
+              retrouver un équilibre intérieur.
+            </p>
+            <p>
+              {" "}
+              Je vous accompagne avec douceur et bienveillance pour retrouver un
+              mieux-être durable, à votre rythme.{" "}
             </p>
 
             <div className="hero-buttons">
               <button className="cta-home">Prendre rendez-vous</button>
-              <button className="cta-secondary">Découvrir</button>
+              <button
+                onClick={() => navigate("/services")}
+                className="cta-secondary"
+              >
+                Découvrir
+              </button>
             </div>
           </div>
-        </section>
-
-        <section className="intro">
-          <p>
-            Je suis <strong>Lucie Bordeyne</strong>, sophrologue, et
-            j’accompagne enfants, adultes et seniors dans la gestion du stress.
-          </p>
-          <p>
-            Grâce à des techniques simples, vous retrouvez un équilibre
-            intérieur.
-          </p>
-          <p>Un accompagnement doux et adapté à votre rythme.</p>
         </section>
 
         <section className="benefits">
@@ -68,7 +73,12 @@ export default function Home() {
 
         <section className="cta-section">
           <h2>Prêt à vous sentir mieux ?</h2>
-          <button className="cta-home">Réserver une séance</button>
+          <button
+            onClick={() => navigate("/reservations")}
+            className="cta-home"
+          >
+            Réserver une séance
+          </button>
         </section>
       </main>
     </div>

@@ -1,9 +1,10 @@
 import { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import "./Navbar.css";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
+  const navigate = useNavigate();
 
   const links = [
     { path: "/", label: "HOME" },
@@ -45,7 +46,9 @@ export default function Navbar() {
           </NavLink>
         ))}
       </div>
-      <button className="cta-home">Prendre rendez-vous</button>
+      <button onClick={() => navigate("/reservations")} className="cta-home">
+        Prendre rendez-vous
+      </button>
     </nav>
   );
 }

@@ -46,6 +46,7 @@
   justify-content: center;
   gap: 15px;
   flex-wrap: wrap;
+  margin-top: 30px;
 }
 
 .cta-home {
@@ -62,17 +63,7 @@
   border: 1px solid #ddd;
   padding: 14px 28px;
   border-radius: 30px;
-}
-
-.intro {
-  max-width: 700px;
-  margin: 60px auto;
-  text-align: center;
-  color: #5e5e5e;
-}
-
-.intro p {
-  margin-bottom: 20px;
+  cursor: pointer;
 }
 
 .benefits {
@@ -108,7 +99,11 @@
 .benefit h3 {
   color: #b89878;
 }
-
+.benefit p {
+  margin-top: 5px;
+  color: #4a6f5d!important;
+  /* font-style: italic; */
+}
 /* CTA */
 .cta-section {
   text-align: center;
@@ -118,6 +113,7 @@
 .cta-section h2 {
   margin-bottom: 20px;
   font-family: "Noto Serif", serif;
+  color: #b89878;
 }
 
 /* RESPONSIVE */
