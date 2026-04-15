@@ -4,6 +4,8 @@ import ChildCareIcon from "@mui/icons-material/ChildCare";
 import ElderlyIcon from "@mui/icons-material/Elderly";
 import PsychologyIcon from "@mui/icons-material/Psychology";
 import SpaIcon from "@mui/icons-material/Spa";
+import AirIcon from "@mui/icons-material/Air";
+import WavesIcon from "@mui/icons-material/Waves";
 
 export default function Services() {
   return (
@@ -56,7 +58,7 @@ export default function Services() {
             <p>Gestion des émotions</p>
           </div>
           <div className="card">
-            <SelfImprovementIcon className="icon" />
+            <AirIcon  className="icon" />
             <p>Confiance en soi</p>
           </div>
           <div className="card">

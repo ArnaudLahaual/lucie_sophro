@@ -1,7 +1,7 @@
 import "./Home.css";
 import PersonIcon from "@mui/icons-material/Person";
 import SpaIcon from "@mui/icons-material/Spa";
-import SelfImprovementIcon from "@mui/icons-material/SelfImprovement";
+import WavesIcon from "@mui/icons-material/Waves";
 import GroupsIcon from "@mui/icons-material/Groups";
 import { useNavigate } from "react-router-dom";
 
@@ -64,7 +64,7 @@ export default function Home() {
           </div>
 
           <div className="benefit">
-            <SelfImprovementIcon className="benefit-icon" />
+            <WavesIcon className="benefit-icon" />
             <h3>À votre rythme</h3>
             <p>Progressif et efficace</p>
           </div>
