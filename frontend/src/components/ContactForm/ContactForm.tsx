@@ -44,16 +44,15 @@ export default function ContactForm({ onSuccess }: any) {
     <div className="contact-page">
       <div className="contact-card">
         <p className="contact-card-text">
-          Une question, une demande ou une prise de rendez-vous ?
-          <br></br> Je vous invite à remplir le formulaire ci-dessous. Je vous
-          répondrai avec plaisir dans les meilleurs délais.
+          Une question, une demande ou une prise de rendez-vous ?<br></br> Je
+          vous invite à remplir le formulaire ci-dessous. Je vous répondrai avec
+          plaisir dans les meilleurs délais.
         </p>
 
         <Form form={form} layout="vertical" onFinish={handleValidateForm}>
           <div className="form-row">
             <Form.Item
               name="lastname"
-              label="Nom"
               rules={[{ required: true, message: "Veuillez entrer votre nom" }]}
               className="form-item"
             >
@@ -62,7 +61,6 @@ export default function ContactForm({ onSuccess }: any) {
 
             <Form.Item
               name="firstname"
-              label="Prénom"
               rules={[
                 { required: true, message: "Veuillez entrer votre prénom" },
               ]}
@@ -73,7 +71,6 @@ export default function ContactForm({ onSuccess }: any) {
           </div>
 
           <Form.Item
-            label="Email"
             name="email"
             rules={[
               { required: true, type: "email", message: "Email invalide" },
@@ -83,7 +80,6 @@ export default function ContactForm({ onSuccess }: any) {
           </Form.Item>
 
           <Form.Item
-            label="Téléphone"
             name="phone"
             rules={[
               { required: true, message: "Numéro obligatoire" },
@@ -94,7 +90,6 @@ export default function ContactForm({ onSuccess }: any) {
           </Form.Item>
 
           <Form.Item
-            label="Sujet de votre demande"
             name="subject"
             rules={[{ required: true, message: "Choisissez un sujet" }]}
           >
@@ -107,7 +102,6 @@ export default function ContactForm({ onSuccess }: any) {
 
           <Form.Item
             name="message"
-            label="Message"
             rules={[
               { required: true, message: "Veuillez renseigner votre demande" },
             ]}

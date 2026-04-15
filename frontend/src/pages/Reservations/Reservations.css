@@ -1,0 +1,137 @@
+.reservations-container {
+  min-height: 100vh;
+  padding: 100px 20px;
+  background: #fff8f1;
+}
+
+.reservations-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.reservations-header h1 {
+  font-size: 48px;
+  font-family: "Noto Serif", serif;
+  color: #74593d;
+}
+
+.badge {
+  background: #e8e1da;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 12px;
+  text-transform: uppercase;
+}
+
+/* LAYOUT */
+.reservations-content {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 40px;
+  max-width: 1100px;
+  margin: auto;
+}
+
+@media (min-width: 1024px) {
+  .reservations-content {
+    grid-template-columns: 1.2fr 1fr;
+  }
+}
+
+/* CARDS */
+.calendar-card,
+.form-card {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  padding: 30px;
+  box-shadow: 0 20px 40px rgba(116, 89, 61, 0.06);
+}
+
+/* CALENDAR */
+.ant-picker-calendar {
+  border: none !important;
+}
+
+.ant-picker-cell-selected .ant-picker-cell-inner {
+  background: #b89878 !important;
+  color: white !important;
+  border-radius: 50%;
+}
+
+/* SLOTS */
+.slots {
+  margin-top: 30px;
+}
+
+.slots h3 {
+  font-family: "Noto Serif", serif;
+  color: #74593d;
+}
+
+.slots-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.slot-btn {
+  padding: 10px 18px;
+  border-radius: 25px;
+  border: 1px solid #ddd;
+  background: white;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.slot-btn:hover {
+  border-color: #b89878;
+}
+
+.slot-btn.active {
+  background: #b89878;
+  color: white;
+  border: none;
+}
+
+/* FORM */
+.form-card h2 {
+  font-family: "Noto Serif", serif;
+  color: #74593d;
+  margin-bottom: 20px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.form-row {
+  display: flex;
+  gap: 10px;
+}
+
+/* INPUTS */
+.ant-input {
+  border-radius: 25px !important;
+  padding: 10px 15px !important;
+  border: none !important;
+  background: #faf3eb !important;
+}
+
+/* BUTTON */
+.submit-btn {
+  margin-top: 10px;
+  width: 100%;
+  background: #b89878 !important;
+  color: white !important;
+  border: none !important;
+  border-radius: 30px !important;
+  height: 45px;
+}
+
+.submit-btn:hover {
+  background: #a6846a !important;
+}
