@@ -11,7 +11,13 @@ export function Reservations() {
   const slots = ["09:00", "10:30", "14:00", "15:30", "17:00"];
 
   const handleValidateForm = (values: any) => {
-    console.log("values", values);
+    const data = {
+      ...values,
+      date: date.format("YYYY-MM-DD"),
+      time: selectedSlot,
+    };
+
+    console.log("values", data);
   };
 
   return (
@@ -25,7 +31,11 @@ export function Reservations() {
           <Calendar
             fullscreen={false}
             value={date}
-            onSelect={(value) => setDate(value)}
+            onSelect={(value, info) => {
+              if (info.source === "date") {
+                setDate(value);
+              }
+            }}
           />
 
           <div className="slots">
@@ -39,6 +49,7 @@ export function Reservations() {
                     selectedSlot === slot ? "active" : ""
                   }`}
                   onClick={() => setSelectedSlot(slot)}
+                  type="button"
                 >
                   {slot}
                 </button>
@@ -57,9 +68,8 @@ export function Reservations() {
                 rules={[
                   { required: true, message: "Veuillez entrer votre nom" },
                 ]}
-                className="form-item"
               >
-                <Input placeholder="Veuillez entrer votre nom" />
+                <Input placeholder="Nom" />
               </Form.Item>
 
               <Form.Item
@@ -67,9 +77,8 @@ export function Reservations() {
                 rules={[
                   { required: true, message: "Veuillez entrer votre prénom" },
                 ]}
-                className="form-item"
               >
-                <Input placeholder="Veuillez entrer votre prénom" />
+                <Input placeholder="Prénom" />
               </Form.Item>
             </div>
 
@@ -79,7 +88,7 @@ export function Reservations() {
                 { required: true, type: "email", message: "Email invalide" },
               ]}
             >
-              <Input placeholder="Veuillez renseigner votre email" />
+              <Input placeholder="Email" />
             </Form.Item>
 
             <Form.Item
@@ -89,30 +98,20 @@ export function Reservations() {
                 { pattern: /^[0-9+ ]+$/, message: "Numéro invalide" },
               ]}
             >
-              <Input
-                type="tel"
-                placeholder="Veuillez indiquer votre téléphone"
-              />
+              <Input placeholder="Téléphone" />
             </Form.Item>
 
             <Form.Item>
-              <Button type="primary" htmlType="submit" className="submit-btn">
+              <Button
+                type="primary"
+                htmlType="submit"
+                className="submit-btn"
+                disabled={!selectedSlot}
+              >
                 Envoyer
               </Button>
             </Form.Item>
           </Form>
-
-          {/* <div className="form">
-            <div className="form-row">
-              <Input placeholder="Prénom" />
-              <Input placeholder="Nom" />
-            </div>
-
-            <Input placeholder="Email" />
-            <Input placeholder="Téléphone" />
-
-            <Button className="submit-btn">Confirmer la réservation</Button>
-          </div> */}
         </div>
       </div>
     </div>
