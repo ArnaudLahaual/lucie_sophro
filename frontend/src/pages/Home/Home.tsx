@@ -34,7 +34,12 @@ export default function Home() {
             </p>
 
             <div className="hero-buttons">
-              <button className="cta-home">Prendre rendez-vous</button>
+              <button
+                onClick={() => navigate("/reservations")}
+                className="cta-home"
+              >
+                Prendre rendez-vous
+              </button>
               <button
                 onClick={() => navigate("/services")}
                 className="cta-secondary"
