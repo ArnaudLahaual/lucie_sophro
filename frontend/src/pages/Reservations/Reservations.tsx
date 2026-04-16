@@ -1,12 +1,12 @@
 import "./Reservations.css";
 import { Calendar, Input, Button, Form, Select } from "antd";
-import { Dayjs } from "dayjs";
+import dayjs, { Dayjs } from "dayjs";
 import { useState } from "react";
 import "dayjs/locale/fr";
 import locale from "antd/es/date-picker/locale/fr_FR";
 
 export function Reservations() {
-  const [date, setDate] = useState<Dayjs | null>(null);
+  const [date, setDate] = useState<Dayjs>(dayjs());
   const [selectedSlot, setSelectedSlot] = useState<string | null>(null);
   const [form] = Form.useForm();
 
@@ -37,12 +37,10 @@ export function Reservations() {
           <Calendar
             fullscreen={false}
             locale={locale}
-            value={date || undefined}
-            onSelect={(value, info) => {
-              if (info.source === "date") {
-                setDate(value);
-                setSelectedSlot(null);
-              }
+            value={date}
+            onSelect={(value) => {
+              setDate(value);
+              setSelectedSlot(null);
             }}
           />
 
