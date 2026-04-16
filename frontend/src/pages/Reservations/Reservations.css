@@ -63,6 +63,32 @@
   display: none;
 }
 
+.calendar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.calendar-header button {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: #74593d;
+}
+
+.calendar-header button:hover {
+  color: #b89878;
+}
+
+.calendar-title {
+  font-family: "Noto Serif", serif;
+  font-size: 18px;
+  color: #74593d;
+  text-transform: capitalize;
+}
+
 /* SLOTS */
 .slots {
   margin-top: 30px;

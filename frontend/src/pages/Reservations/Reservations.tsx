@@ -42,6 +42,29 @@ export function Reservations() {
               setDate(value);
               setSelectedSlot(null);
             }}
+            headerRender={({ value }) => {
+              return (
+                <div className="calendar-header">
+                  <button
+                    type="button"
+                    onClick={() => setDate(value.subtract(1, "month"))}
+                  >
+                    ←
+                  </button>
+
+                  <span className="calendar-title">
+                    {value.format("MMMM YYYY")}
+                  </span>
+
+                  <button
+                    type="button"
+                    onClick={() => setDate(value.add(1, "month"))}
+                  >
+                    →
+                  </button>
+                </div>
+              );
+            }}
           />
 
           <div className="slots">
