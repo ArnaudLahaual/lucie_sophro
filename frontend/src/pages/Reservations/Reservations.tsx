@@ -43,7 +43,7 @@ export function Reservations() {
               setSelectedSlot(null);
             }}
             disabledDate={(currentDate) =>
-              currentDate < dayjs().startOf("day") || currentDate.day() === 0
+              currentDate < dayjs().startOf("day") || currentDate.day() === 0 || currentDate.day() === 6
             }
             headerRender={({ value }) => {
               return (
