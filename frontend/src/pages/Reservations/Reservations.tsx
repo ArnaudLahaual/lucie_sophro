@@ -1,5 +1,5 @@
 import "./Reservations.css";
-import { Calendar, Input, Button, Form } from "antd";
+import { Calendar, Input, Button, Form, Select } from "antd";
 import { Dayjs } from "dayjs";
 import { useState } from "react";
 import "dayjs/locale/fr";
@@ -11,6 +11,10 @@ export function Reservations() {
   const [form] = Form.useForm();
 
   const slots = ["09:00", "10:30", "14:00", "15:30", "17:00"];
+  const subjectOptions = [
+    { value: "resa_adulte", label: "Séance adulte" },
+    { value: "resa_enfant", label: "Séance enfant" },
+  ];
 
   const handleValidateForm = (values: any) => {
     const data = {
@@ -92,6 +96,17 @@ export function Reservations() {
               rules={[{ required: true, message: "Téléphone obligatoire" }]}
             >
               <Input placeholder="Téléphone" />
+            </Form.Item>
+
+            <Form.Item
+              name="subject"
+              rules={[{ required: true, message: "Choisissez un sujet" }]}
+            >
+              <Select
+                placeholder="Choisir le type de séance"
+                options={subjectOptions}
+                size="large"
+              />
             </Form.Item>
 
             <Button

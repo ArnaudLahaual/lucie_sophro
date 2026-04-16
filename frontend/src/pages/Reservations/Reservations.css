@@ -59,6 +59,10 @@
   border-radius: 50%;
 }
 
+.ant-picker-calendar-header {
+  display: none;
+}
+
 /* SLOTS */
 .slots {
   margin-top: 30px;
@@ -134,4 +138,36 @@
 
 .submit-btn:hover {
   background: #a6846a !important;
+}
+
+/* SELECT ANT DESIGN CUSTOM */
+.ant-select {
+  width: 100%;
+}
+
+.ant-select-selector {
+  background: #faf3eb !important;
+  border: none !important;
+  border-radius: 25px !important;
+  padding: 10px 15px !important;
+  height: 45px !important;
+  display: flex;
+  align-items: center;
+}
+
+/* texte du select */
+.ant-select-selection-item {
+  font-size: 13px !important;
+  color: #74593d !important;
+}
+
+/* placeholder */
+.ant-select-selection-placeholder {
+  font-size: 13px !important;
+  color: #9a8c7c !important;
+}
+
+/* focus */
+.ant-select-focused .ant-select-selector {
+  box-shadow: 0 0 0 2px rgba(184, 152, 120, 0.2) !important;
 }
