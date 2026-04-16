@@ -1,10 +1,12 @@
 import "./Reservations.css";
 import { Calendar, Input, Button, Form } from "antd";
-import dayjs from "dayjs";
+import { Dayjs } from "dayjs";
 import { useState } from "react";
+import "dayjs/locale/fr";
+import locale from "antd/es/date-picker/locale/fr_FR";
 
 export function Reservations() {
-  const [date, setDate] = useState(dayjs());
+  const [date, setDate] = useState<Dayjs | null>(null);
   const [selectedSlot, setSelectedSlot] = useState<string | null>(null);
   const [form] = Form.useForm();
 
@@ -13,11 +15,11 @@ export function Reservations() {
   const handleValidateForm = (values: any) => {
     const data = {
       ...values,
-      date: date.format("YYYY-MM-DD"),
+      date: date ? date.format("YYYY-MM-DD") : null,
       time: selectedSlot,
     };
 
-    console.log("values", data);
+    console.log("data", data);
   };
 
   return (
@@ -30,10 +32,12 @@ export function Reservations() {
         <div className="calendar-card">
           <Calendar
             fullscreen={false}
-            value={date}
+            locale={locale}
+            value={date || undefined}
             onSelect={(value, info) => {
               if (info.source === "date") {
                 setDate(value);
+                setSelectedSlot(null);
               }
             }}
           />
@@ -45,11 +49,9 @@ export function Reservations() {
               {slots.map((slot) => (
                 <button
                   key={slot}
-                  className={`slot-btn ${
-                    selectedSlot === slot ? "active" : ""
-                  }`}
-                  onClick={() => setSelectedSlot(slot)}
                   type="button"
+                  className={`slot-btn ${selectedSlot === slot ? "active" : ""}`}
+                  onClick={() => setSelectedSlot(slot)}
                 >
                   {slot}
                 </button>
@@ -62,25 +64,19 @@ export function Reservations() {
           <h2>Finaliser ma demande</h2>
 
           <Form form={form} layout="vertical" onFinish={handleValidateForm}>
-            <div className="form-row">
-              <Form.Item
-                name="lastname"
-                rules={[
-                  { required: true, message: "Veuillez entrer votre nom" },
-                ]}
-              >
-                <Input placeholder="Nom" />
-              </Form.Item>
+            <Form.Item
+              name="lastname"
+              rules={[{ required: true, message: "Nom obligatoire" }]}
+            >
+              <Input placeholder="Nom" />
+            </Form.Item>
 
-              <Form.Item
-                name="firstname"
-                rules={[
-                  { required: true, message: "Veuillez entrer votre prénom" },
-                ]}
-              >
-                <Input placeholder="Prénom" />
-              </Form.Item>
-            </div>
+            <Form.Item
+              name="firstname"
+              rules={[{ required: true, message: "Prénom obligatoire" }]}
+            >
+              <Input placeholder="Prénom" />
+            </Form.Item>
 
             <Form.Item
               name="email"
@@ -93,24 +89,19 @@ export function Reservations() {
 
             <Form.Item
               name="phone"
-              rules={[
-                { required: true, message: "Numéro obligatoire" },
-                { pattern: /^[0-9+ ]+$/, message: "Numéro invalide" },
-              ]}
+              rules={[{ required: true, message: "Téléphone obligatoire" }]}
             >
               <Input placeholder="Téléphone" />
             </Form.Item>
 
-            <Form.Item>
-              <Button
-                type="primary"
-                htmlType="submit"
-                className="submit-btn"
-                disabled={!selectedSlot}
-              >
-                Envoyer
-              </Button>
-            </Form.Item>
+            <Button
+              type="primary"
+              htmlType="submit"
+              disabled={!selectedSlot || !date}
+              className="submit-btn"
+            >
+              Envoyer
+            </Button>
           </Form>
         </div>
       </div>
