@@ -1,16 +1,19 @@
 import "./Reservations.css";
 import { Calendar, Input, Button, Form, Select } from "antd";
 import dayjs, { Dayjs } from "dayjs";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "dayjs/locale/fr";
 import locale from "antd/es/date-picker/locale/fr_FR";
+import axiosInstance from "../../api/axiosconfig";
+import type { Slot } from "../../types/slot";
 
 export function Reservations() {
   const [date, setDate] = useState<Dayjs>(dayjs());
-  const [selectedSlot, setSelectedSlot] = useState<string | null>(null);
+  const [slots, setSlots] = useState<Slot[]>([]);
+  const [selectedSlot, setSelectedSlot] = useState<number | null>(null);
   const [form] = Form.useForm();
 
-  const slots = ["09:00", "10:30", "14:00", "15:30", "17:00"];
+  // const slots = ["09:00", "10:30", "14:00", "15:30", "17:00"];
   const subjectOptions = [
     { value: "resa_adulte", label: "Séance adulte" },
     { value: "resa_enfant", label: "Séance enfant" },
@@ -25,6 +28,19 @@ export function Reservations() {
 
     console.log("data", data);
   };
+  useEffect(() => {
+    if (!date) return;
+
+    const getSlots = async () => {
+      const formattedDate = date.format("YYYY-MM-DD");
+
+      const resp = await axiosInstance.get(`/slots?date=${formattedDate}`);
+      console.log("data axios", resp.data);
+      setSlots(resp.data);
+    };
+
+    getSlots();
+  }, [date]);
 
   return (
     <div className="reservations-container">
@@ -43,7 +59,9 @@ export function Reservations() {
               setSelectedSlot(null);
             }}
             disabledDate={(currentDate) =>
-              currentDate < dayjs().startOf("day") || currentDate.day() === 0 || currentDate.day() === 6
+              currentDate < dayjs().startOf("day") ||
+              currentDate.day() === 0 ||
+              currentDate.day() === 6
             }
             headerRender={({ value }) => {
               return (
@@ -71,19 +89,25 @@ export function Reservations() {
           />
 
           <div className="slots">
-            <h3>Créneaux disponibles</h3>
+            <h3>
+              {slots.length > 0 ? "Disponibilités" : "Aucune disponiblités"}
+            </h3>
 
             <div className="slots-list">
-              {slots.map((slot) => (
-                <button
-                  key={slot}
-                  type="button"
-                  className={`slot-btn ${selectedSlot === slot ? "active" : ""}`}
-                  onClick={() => setSelectedSlot(slot)}
-                >
-                  {slot}
-                </button>
-              ))}
+              {slots.length > 0 ? (
+                slots.map((slot) => (
+                  <button
+                    key={slot.id}
+                    type="button"
+                    className={`slot-btn ${selectedSlot === slot.id ? "active" : ""}`}
+                    onClick={() => setSelectedSlot(slot.id)}
+                  >
+                    {slot.time}
+                  </button>
+                ))
+              ) : (
+                <span></span>
+              )}
             </div>
           </div>
         </div>
