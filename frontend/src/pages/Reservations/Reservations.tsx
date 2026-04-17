@@ -6,14 +6,15 @@ import "dayjs/locale/fr";
 import locale from "antd/es/date-picker/locale/fr_FR";
 import axiosInstance from "../../api/axiosconfig";
 import type { Slot } from "../../types/slot";
+import LoaderInline from "../../components/Loader/LoaderInline";
 
 export function Reservations() {
   const [date, setDate] = useState<Dayjs>(dayjs());
   const [slots, setSlots] = useState<Slot[]>([]);
+  const [loading, setLoading] = useState<boolean>(false);
   const [selectedSlot, setSelectedSlot] = useState<number | null>(null);
   const [form] = Form.useForm();
 
-  // const slots = ["09:00", "10:30", "14:00", "15:30", "17:00"];
   const subjectOptions = [
     { value: "resa_adulte", label: "Séance adulte" },
     { value: "resa_enfant", label: "Séance enfant" },
@@ -31,15 +32,21 @@ export function Reservations() {
   useEffect(() => {
     if (!date) return;
 
-    const getSlots = async () => {
-      const formattedDate = date.format("YYYY-MM-DD");
+    const formattedDate = date.format("YYYY-MM-DD");
 
-      const resp = await axiosInstance.get(`/slots?date=${formattedDate}`);
-      console.log("data axios", resp.data);
-      setSlots(resp.data);
-    };
+    setLoading(true);
 
-    getSlots();
+    axiosInstance
+      .get(`/slots?date=${formattedDate}`)
+      .then((resp) => {
+        setSlots(resp.data);
+      })
+      .catch((err) => {
+        console.error("erreur lors de la récupération des slots :", err);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
   }, [date]);
 
   return (
@@ -88,27 +95,31 @@ export function Reservations() {
             }}
           />
 
-          <div className="slots">
-            <h3>
-              {slots.length > 0 ? "Disponibilités" : "Aucune disponiblités"}
-            </h3>
+          <div className="slots-list">
+            {loading ? (
+              <div className="slots-loader">
+                <LoaderInline />
+              </div>
+            ) : slots.length > 0 ? (
+              <>
+                <h3 className="slots-title">Créneaux disponibles</h3>
 
-            <div className="slots-list">
-              {slots.length > 0 ? (
-                slots.map((slot) => (
-                  <button
-                    key={slot.id}
-                    type="button"
-                    className={`slot-btn ${selectedSlot === slot.id ? "active" : ""}`}
-                    onClick={() => setSelectedSlot(slot.id)}
-                  >
-                    {slot.time}
-                  </button>
-                ))
-              ) : (
-                <span></span>
-              )}
-            </div>
+                <div className="slots-buttons">
+                  {slots.map((slot) => (
+                    <button
+                      key={slot.id}
+                      type="button"
+                      className={`slot-btn ${selectedSlot === slot.id ? "active" : ""}`}
+                      onClick={() => setSelectedSlot(slot.id)}
+                    >
+                      {slot.time}
+                    </button>
+                  ))}
+                </div>
+              </>
+            ) : (
+              <p className="slots-empty">Aucun créneau disponible</p>
+            )}
           </div>
         </div>
 

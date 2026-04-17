@@ -5,8 +5,3 @@
   justify-content: center;
   align-items: center;
 }
-
-.loader-inline .ant-spin-dot i,
-.loader-inline .ant-spin-dot-item {
-  background-color: #b89878 !important;
-}
