@@ -1,4 +1,4 @@
-import "./Reservations.css";
+import "./components/css/Reservations.css";
 import dayjs, { Dayjs } from "dayjs";
 import { useEffect, useState } from "react";
 import "dayjs/locale/fr";
@@ -55,26 +55,45 @@ export function Reservations() {
               <div className="slots-loader">
                 <LoaderInline />
               </div>
-            ) : slots.length > 0 ? (
-              <>
-                <h3 className="slots-title">Créneaux disponibles</h3>
-
-                <div className="slots-buttons">
-                  {slots.map((slot) => (
-                    <button
-                      key={slot.id}
-                      type="button"
-                      className={`slot-btn ${selectedSlot === slot.id ? "active" : ""}`}
-                      onClick={() => setSelectedSlot(slot.id)}
-                      disabled={!slot.is_available}
-                    >
-                      {slot.time}
-                    </button>
-                  ))}
-                </div>
-              </>
             ) : (
-              <p className="slots-empty">Aucun créneau disponible</p>
+              (() => {
+                const availableSlots = slots.filter(
+                  (slot) => slot.is_available,
+                );
+
+                if (slots.length === 0) {
+                  return (
+                    <p className="slots-empty">Aucun créneau disponible</p>
+                  );
+                }
+
+                if (availableSlots.length === 0) {
+                  return (
+                    <p className="slots-empty">
+                      Il n'y a plus de créneaux disponibles ce jour
+                    </p>
+                  );
+                }
+
+                return (
+                  <>
+                    <h3 className="slots-title">Créneaux disponibles</h3>
+
+                    <div className="slots-buttons">
+                      {availableSlots.map((slot) => (
+                        <button
+                          key={slot.id}
+                          type="button"
+                          className={`slot-btn ${selectedSlot === slot.id ? "active" : ""}`}
+                          onClick={() => setSelectedSlot(slot.id)}
+                        >
+                          {slot.time}
+                        </button>
+                      ))}
+                    </div>
+                  </>
+                );
+              })()
             )}
           </div>
         </div>

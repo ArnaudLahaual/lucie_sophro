@@ -1,8 +1,6 @@
 import { Input, Button, Form, Select } from "antd";
-import { useSnackbar } from "notistack";
 import type { Dayjs } from "dayjs";
 import type { Slot } from "../../../types/slot";
-import type { FormInstance } from "antd";
 import { useState } from "react";
 import { ModalBooking } from "./ModalBooking";
 

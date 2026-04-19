@@ -1,19 +1,33 @@
-import { Modal, Button } from "antd";
+import { Modal, Button, Spin } from "antd";
 import axiosInstance from "../../../api/axiosconfig";
 import { useSnackbar } from "notistack";
 import type { Dayjs } from "dayjs";
 import type { Slot } from "../../../types/slot";
+import { useState } from "react";
+import type { FormInstance } from "antd/lib";
 import "../components/css/ModalBooking.css";
+
+type BookingData = {
+  firstname: string;
+  lastname: string;
+  email: string;
+  phone: string;
+  subject: string;
+  time_slot_id: number | null;
+};
+
 type Props = {
   open: boolean;
   onCancel: () => void;
   date: Dayjs;
   slots: Slot[];
-  formData: any;
+  formData: BookingData | null;
   setSelectedSlot: (value: number | null) => void;
   setSlots: (slots: Slot[]) => void;
-  form: any;
+  form: FormInstance;
 };
+
+type Step = "confirm" | "loading" | "success";
 
 export function ModalBooking({
   open,
@@ -26,89 +40,130 @@ export function ModalBooking({
   form,
 }: Props) {
   const { enqueueSnackbar } = useSnackbar();
+  const [step, setStep] = useState<Step>("confirm");
 
-  const handleConfirm = () => {
+  const slotTime = slots.find(
+    (slot) => slot.id === formData?.time_slot_id,
+  )?.time;
+
+  const closeModal = () => {
+    setStep("confirm");
+    onCancel();
+  };
+
+  const handleConfirm = async () => {
     if (!formData) return;
 
-    axiosInstance
-      .post("/addBooking", formData)
-      .then(() => {
-        enqueueSnackbar("Votre réservation a bien été prise en compte.", {
-          variant: "success",
-        });
+    try {
+      setStep("loading");
 
-        form.resetFields();
-        setSelectedSlot(null);
-        onCancel();
+      await axiosInstance.post("/addBooking", formData);
 
-        return axiosInstance.get(`/slots?date=${date.format("YYYY-MM-DD")}`);
-      })
-      .then((resp: { data: Slot[] }) => {
-        setSlots(resp.data);
-      })
-      .catch(() => {
-        enqueueSnackbar("Une erreur est survenue.", {
-          variant: "error",
-        });
+      enqueueSnackbar("Réservation confirmée", {
+        variant: "success",
       });
+
+      const resp = await axiosInstance.get(
+        `/slots?date=${date.format("YYYY-MM-DD")}`,
+      );
+
+      setSlots(resp.data);
+      setSelectedSlot(null);
+      form.resetFields();
+      setStep("success");
+    } catch (e) {
+      enqueueSnackbar("Une erreur est survenue", {
+        variant: "error",
+      });
+      setStep("confirm");
+    }
   };
+
   return (
     <Modal
       open={open}
-      onCancel={onCancel}
+      onCancel={closeModal}
       footer={null}
       centered
       className="booking-modal"
     >
-      <div className="modal-content">
-        <h2 className="modal-title">Confirmation de réservation</h2>
+      {step === "confirm" && (
+        <div className="modal-content">
+          <h2 className="modal-title">Confirmation de réservation</h2>
 
-        <p className="modal-subtitle">
-          Vérifiez les informations avant de confirmer
-        </p>
+          <p className="modal-subtitle">
+            Vérifiez les informations avant de confirmer
+          </p>
 
-        <div className="modal-card">
-          <div className="modal-row">
-            <span className="modal-label">Date</span>
-            <span className="modal-value">{date.format("DD MMMM YYYY")}</span>
+          <div className="modal-card">
+            <div className="modal-row">
+              <span>Date</span>
+              <span>
+                <strong>{date.format("DD MMMM YYYY")}</strong>
+              </span>
+            </div>
+
+            <div className="modal-row">
+              <span>Heure</span>
+              <span>
+                <strong>{slotTime}</strong>
+              </span>
+            </div>
+
+            <div className="modal-row">
+              <span>Séance</span>
+              <span>
+                <strong>
+                  {formData?.subject === "resa_adulte"
+                    ? "Séance adulte"
+                    : "Séance enfant"}
+                </strong>
+              </span>
+            </div>
           </div>
 
-          <div className="modal-row">
-            <span className="modal-label">Heure</span>
-            <span className="modal-value">
-              {formData &&
-                slots.find((slot) => slot.id === formData.time_slot_id)?.time}
-            </span>
-          </div>
+          <p className="modal-warning">Confirmer cette réservation ?</p>
 
-          <div className="modal-row">
-            <span className="modal-label">Séance</span>
-            <span className="modal-value">
-              {formData?.subject === "resa_adulte"
-                ? "Séance adulte"
-                : "Séance enfant"}
-            </span>
+          <div className="modal-actions">
+            <Button onClick={closeModal} className="modal-cancel">
+              Annuler
+            </Button>
+
+            <Button
+              type="primary"
+              className="modal-confirm"
+              onClick={handleConfirm}
+            >
+              Confirmer
+            </Button>
           </div>
         </div>
+      )}
 
-        <p className="modal-warning">
-          Cette action est définitive. Voulez-vous confirmer votre réservation ?
-        </p>
+      {step === "loading" && (
+        <div className="modal-loading">
+          <Spin size="large" />
+          <p>Confirmation en cours...</p>
+        </div>
+      )}
 
-        <div className="modal-actions">
-          <Button onClick={onCancel} className="modal-cancel">
-            Annuler
-          </Button>
+      {step === "success" && (
+        <div className="modal-success">
+          <div className="success-icon"></div>
 
-          <Button
-            type="primary"
-            className="modal-confirm"
-            onClick={handleConfirm}
-          >
-            Confirmer la réservation
+          <h2>Réservation confirmée</h2>
+
+          <p>
+            Votre créneau du <strong>{date.format("DD MMMM YYYY")}</strong> à{" "}
+            <strong>{slotTime}</strong> est réservé.<br></br> Vous recevrez un
+            mail de confirmation avec les détails de la réservation.
+          </p>
+
+          <Button type="primary" className="modal-confirm" onClick={closeModal}>
+            OK
           </Button>
         </div>
-      </div>
+      )}
     </Modal>
   );
 }
