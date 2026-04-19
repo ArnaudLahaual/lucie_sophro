@@ -33,15 +33,23 @@ class BookingController extends Controller
         // si user B arrive en même temps, il attend que user A ait fini
         try {
             $booking = DB::transaction(function () use ($request, $validator) {
+
                 $slot = TimeSlot::where('id', $request->time_slot_id)
                     ->lockForUpdate()
                     ->first();
 
-                if (Booking::where('time_slot_id', $slot->id)->exists()) {
+                if (!$slot || !$slot->is_available) {
                     throw new \Exception('Créneau déjà réservé', 409);
                 }
 
-                return Booking::create($validator->validated());
+                $booking = Booking::create($validator->validated());
+
+                //passe le slot réservé via le booking crée a false
+                $slot->update([
+                    'is_available' => false
+                ]);
+
+                return $booking;
             });
 
             return response()->json([

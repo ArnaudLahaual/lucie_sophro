@@ -11,5 +11,11 @@ class TimeSlot extends Model
     protected $fillable = [
         'date',
         'time',
+        'is_available'
+    ];
+
+    //empeche d'afficher un nombre, force a afficher un boolean
+    protected $casts = [
+        'is_available' => 'boolean'
     ];
 }
