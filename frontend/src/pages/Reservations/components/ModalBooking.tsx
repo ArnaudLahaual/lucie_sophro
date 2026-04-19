@@ -142,7 +142,7 @@ export function ModalBooking({
 
       {step === "loading" && (
         <div className="modal-loading">
-          <Spin size="large" />
+          <Spin style={{ color: "#b89878" }} size="large" />
           <p>Confirmation en cours...</p>
         </div>
       )}
