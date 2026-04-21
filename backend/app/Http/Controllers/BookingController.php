@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\BookingReceived;
+use App\Mail\BookingConfirmation;
 use App\Models\Booking;
 use App\Models\TimeSlot;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 
 class BookingController extends Controller
@@ -28,12 +31,8 @@ class BookingController extends Controller
             ], 422);
         }
 
-        //vérifie si le slot n'est pas réservable en même temps
-        // lockForUpdate() verrouille la ligne le temps de la transaction
-        // si user B arrive en même temps, il attend que user A ait fini
         try {
             $booking = DB::transaction(function () use ($request, $validator) {
-
                 $slot = TimeSlot::where('id', $request->time_slot_id)
                     ->lockForUpdate()
                     ->first();
@@ -44,13 +43,23 @@ class BookingController extends Controller
 
                 $booking = Booking::create($validator->validated());
 
-                //passe le slot réservé via le booking crée a false
-                $slot->update([
-                    'is_available' => false
-                ]);
+                $slot->update(['is_available' => false]);
 
                 return $booking;
             });
+
+            // charge la relation timeSlot pour avoir date + heure dans les mails
+            $booking->load('timeSlot');
+
+            // Mail à Lucie
+            Mail::to('email-de-lucie@gmail.com')->send(
+                new BookingReceived($booking)
+            );
+
+            // Mail de confirmation au client a décommenter en prod
+            // Mail::to($booking->email)->send(
+            //     new BookingConfirmation($booking)
+            // );
 
             return response()->json([
                 'message' => 'Réservation créée',

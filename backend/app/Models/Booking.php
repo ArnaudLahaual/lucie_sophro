@@ -18,4 +18,9 @@ class Booking extends Model
         'time_slot_id',
 
     ];
+
+    public function timeSlot()
+    {
+        return $this->belongsTo(TimeSlot::class);
+    }
 }
