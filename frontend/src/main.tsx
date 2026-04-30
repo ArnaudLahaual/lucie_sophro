@@ -10,6 +10,7 @@ import frFR from "antd/locale/fr_FR";
 
 import dayjs from "dayjs";
 import "dayjs/locale/fr";
+import { AuthProvider } from "./context/AuthContext";
 
 dayjs.locale("fr");
 
@@ -25,7 +26,9 @@ createRoot(document.getElementById("root")!).render(
           }}
           autoHideDuration={2000}
         >
-          <App />
+          <AuthProvider>
+            <App />
+          </AuthProvider>
         </SnackbarProvider>
       </ConfigProvider>
     </Provider>

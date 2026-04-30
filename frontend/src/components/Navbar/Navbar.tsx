@@ -1,10 +1,14 @@
 import { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import "./Navbar.css";
+import { useAuth } from "../../context/AuthContext";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   const navigate = useNavigate();
+  const { user, token, logout } = useAuth();
+
+  const isLogged = !!user && !!token;
 
   const links = [
     { path: "/", label: "HOME" },
@@ -12,11 +16,10 @@ export default function Navbar() {
     { path: "/reservations", label: "BOOKING" },
     { path: "/contact", label: "CONTACT" },
     { path: "/about", label: "A PROPOS" },
+    ...(isLogged ? [{ path: "/admin", label: "DASHBOARD" }] : []),
   ];
 
-  const handleCloseNavBar = () => {
-    setOpen(false);
-  };
+  const handleCloseNavBar = () => setOpen(false);
 
   return (
     <nav className="navbar">
@@ -45,10 +48,25 @@ export default function Navbar() {
             {link.label}
           </NavLink>
         ))}
+
+        {isLogged && (
+          <button
+            onClick={() => {
+              logout();
+              handleCloseNavBar();
+            }}
+            className="nav-logout"
+          >
+            DECONNEXION
+          </button>
+        )}
       </div>
-      <button onClick={() => navigate("/reservations")} className="cta-home">
-        Prendre rendez-vous
-      </button>
+
+      {!isLogged && (
+        <button onClick={() => navigate("/reservations")} className="cta-home">
+          Prendre rendez-vous
+        </button>
+      )}
     </nav>
   );
 }

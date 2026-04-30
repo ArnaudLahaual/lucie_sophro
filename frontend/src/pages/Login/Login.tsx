@@ -4,6 +4,7 @@ import axiosInstance from "../../api/axiosconfig";
 import { enqueueSnackbar } from "notistack";
 import { Button, Form, Input } from "antd";
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
+import { useAuth } from "../../context/AuthContext";
 
 type LoginForm = {
   email: string;
@@ -12,12 +13,13 @@ type LoginForm = {
 
 export default function Login() {
   const navigate = useNavigate();
+  const { login } = useAuth();
 
   const handleLogin = async (values: LoginForm) => {
     try {
       const resp = await axiosInstance.post("/login", values);
-
-      localStorage.setItem("token", resp.data.token);
+      console.log(resp.data);
+      login(resp.data.user, resp.data.token);
 
       enqueueSnackbar("Connexion réussie", { variant: "success" });
 
@@ -34,9 +36,7 @@ export default function Login() {
       <div className="login-card">
         <span className="login-badge">Espace professionnel</span>
 
-        <h1>
-          Connexion
-        </h1>
+        <h1>Connexion</h1>
 
         <p className="login-desc">
           Accédez à votre espace pour gérer vos rendez-vous
