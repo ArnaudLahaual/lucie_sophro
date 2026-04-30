@@ -5,6 +5,7 @@ import { Contact } from "./pages/Contact/Contact";
 import Mentions from "./pages/Mentions/Mentions";
 import Services from "./pages/Services/Services";
 import About from "./pages/About/About";
+import Login from "./pages/Login/Login";
 
 export function AppRoutes() {
   return (
@@ -15,6 +16,7 @@ export function AppRoutes() {
       <Route path="/contact" element={<Contact />} />
       <Route path="/mentions" element={<Mentions />} />
       <Route path="/about" element={<About />} />
+      <Route path="/login" element={<Login />} />
       <Route path="*" element={<Navigate to="/" />} />
     </Routes>
   );

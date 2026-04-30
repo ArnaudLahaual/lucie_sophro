@@ -1,0 +1,70 @@
+.login-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff8f1;
+  padding: 20px;
+}
+
+.login-card {
+  width: 100%;
+  max-width: 420px;
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
+  padding: 40px 30px;
+  border-radius: 20px;
+  box-shadow: 0 20px 40px rgba(116, 89, 61, 0.08);
+  text-align: center;
+}
+
+/* badge */
+.login-badge {
+  background: #e8e1da;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 12px;
+  text-transform: uppercase;
+}
+
+/* title */
+.login-card h1 {
+  margin: 20px 0;
+  font-family: "Noto Serif", serif;
+  color: #74593d;
+}
+
+.login-card h1 span {
+  color: #b89878;
+  font-style: italic;
+}
+
+/* desc */
+.login-desc {
+  font-size: 14px;
+  color: #6b6b6b;
+  margin-bottom: 25px;
+}
+
+/* inputs */
+.ant-input,
+.ant-input-password {
+  border-radius: 25px !important;
+  padding: 10px 15px !important;
+  border: none !important;
+  background: #faf3eb !important;
+}
+
+/* button */
+.login-btn {
+  margin-top: 15px;
+  height: 45px;
+  border-radius: 30px !important;
+  background: #b89878 !important;
+  border: none !important;
+  color: white !important;
+}
+
+.login-btn:hover {
+  background: #a6846a !important;
+}
