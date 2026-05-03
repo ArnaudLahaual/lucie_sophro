@@ -13,6 +13,7 @@ type User = {
 type AuthContextType = {
   user: User | null;
   token: string | null;
+  isLoading: boolean;
   login: (user: User, token: string) => void;
   logout: () => void;
 };
@@ -24,16 +25,24 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [token, setToken] = useState<string | null>(
     localStorage.getItem("token"),
   );
+  const [isLoading, setIsLoading] = useState<boolean>(
+    !!localStorage.getItem("token"),
+  );
   useEffect(() => {
-    if (!token) return;
-
+    if (!token) {
+      setIsLoading(false);
+      return;
+    }
     axiosInstance
       .get("/me")
       .then((resp) => setUser(resp.data))
-      .catch(() => {
-        setToken(null);
-        localStorage.removeItem("token");
-      });
+      .catch((err) => {
+        if (err.response?.status === 401) {
+          setToken(null);
+          localStorage.removeItem("token");
+        }
+      })
+      .finally(() => setIsLoading(false));
   }, [token]);
 
   const login = (user: User, token: string) => {
@@ -49,7 +58,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ user, token, login, logout }}>
+    <AuthContext.Provider value={{ user, token, isLoading, login, logout }}>
       {children}
     </AuthContext.Provider>
   );

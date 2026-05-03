@@ -13,6 +13,7 @@ type BookingData = {
   email: string;
   phone: string;
   subject: string;
+  subject_place: string;
   time_slot_id: number | null;
 };
 
@@ -117,6 +118,17 @@ export function ModalBooking({
                   {formData?.subject === "resa_adulte"
                     ? "Séance adulte"
                     : "Séance enfant"}
+                </strong>
+              </span>
+            </div>
+
+            <div className="modal-row">
+              <span>Lieu</span>
+              <span>
+                <strong>
+                  {formData?.subject_place === "visio"
+                    ? "En visio"
+                    : "En présentiel"}
                 </strong>
               </span>
             </div>

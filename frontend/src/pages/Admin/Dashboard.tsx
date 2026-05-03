@@ -1,31 +1,89 @@
-import { useAuth } from "../../context/AuthContext";
+import { useEffect, useState } from "react";
+import axiosInstance from "../../api/axiosconfig";
+import { Table } from "antd";
+import type { TableProps } from "antd/lib";
+import LoaderInline from "../../components/Loader/LoaderInline";
+import "../../components/Loader/LoaderInline.css";
+
+type Booking = {
+  id: number;
+  firstname: string;
+  lastname: string;
+  subject: string;
+  time_slot: {
+    date: string;
+    time: string;
+  };
+};
 
 export default function Dashboard() {
-  const { user } = useAuth();
+  const [data, setData] = useState<any[]>([]);
+  const [loading, setLoading] = useState<boolean>(false);
+  const today = new Date().toLocaleDateString("fr-FR");
+  const columns: TableProps<Booking>["columns"] = [
+    {
+      title: "Heure",
+      dataIndex: ["time_slot", "time"],
+    },
+    {
+      title: "Nom",
+      dataIndex: "lastname",
+    },
+    {
+      title: "Prénom",
+      dataIndex: "firstname",
+    },
+    {
+      title: "Sujet",
+      dataIndex: "subject",
+    },
+    {
+      title: "Lieu",
+      dataIndex: "subject_place",
+    },
+  ];
+
+  useEffect(() => {
+    setLoading(true);
+    axiosInstance
+      .get("/bookings/today")
+      .then((resp) => {
+        setData(resp.data);
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.error(
+          "erreur lors de la récupération des bookings du jour :",
+          err,
+        );
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  }, []);
   return (
     <div>
-      Dashboard
-      {user && <div>Bonjour {user.name} !</div>}{" "}
       <div className="dashboard-grid">
-        <div className="card">
-          <h3>Aujourd’hui</h3>
-          <p>3 réservations</p>
-          <ul>
-            <li>09:00 — Marie (adulte)</li>
-            <li>11:00 — Paul (enfant)</li>
-          </ul>
-        </div>
-
-        <div className="card">
-          <h3>Statistiques</h3>
-          <p>Semaine : 12</p>
-          <p>Mois : 42</p>
-        </div>
-
-        <div className="card">
-          <h3>Actions rapides</h3>
-          <button>Bloquer une date</button>
-        </div>
+        {loading ? (
+          <div className="slots-loader">
+            <LoaderInline />
+          </div>
+        ) : (
+          <div>
+            <h3>Aujourd’hui {today}</h3>{" "}
+            <p>
+              {data.length > 0
+                ? `Vous avez ${data.length} réservation${data.length > 1 ? "s" : ""}`
+                : "Aucune réservation ce jour"}
+            </p>
+            <Table
+              dataSource={data}
+              rowKey="id"
+              pagination={false}
+              columns={columns}
+            />
+          </div>
+        )}
       </div>
     </div>
   );

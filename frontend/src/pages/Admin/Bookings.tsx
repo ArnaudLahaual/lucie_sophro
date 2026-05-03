@@ -1,17 +1,9 @@
-import { Space, Table, Tag } from "antd";
+import { Space, Table } from "antd";
 import type { TableProps } from "antd";
-
-const data: Booking[] = [
-  {
-    id: 1,
-    firstname: "Marie",
-    lastname: "Dupont",
-    email: "marie@test.com",
-    phone: "0600000000",
-    subject: "resa_adulte",
-    time_slot_id: 1,
-  },
-];
+import { useEffect, useState } from "react";
+import axiosInstance from "../../api/axiosconfig";
+import LoaderInline from "../../components/Loader/LoaderInline";
+import "../../components/Loader/LoaderInline";
 
 type Booking = {
   id: number;
@@ -20,7 +12,11 @@ type Booking = {
   email: string;
   phone: string;
   subject: string;
-  time_slot_id: number;
+  subject_place: string;
+  time_slot: {
+    date: string;
+    time: string;
+  };
 };
 
 const columns: TableProps<Booking>["columns"] = [
@@ -45,18 +41,24 @@ const columns: TableProps<Booking>["columns"] = [
     key: "phone",
   },
   {
+    title: "Lieu",
+    dataIndex: "subject_place",
+    key: "subject_place",
+  },
+  {
     title: "Séance",
     dataIndex: "subject",
     key: "subject",
-    render: (subject: string) => {
-      const isAdulte = subject === "resa_adulte";
-
-      return (
-        <Tag color={isAdulte ? "gold" : "green"}>
-          {isAdulte ? "Adulte" : "Enfant"}
-        </Tag>
-      );
-    },
+  },
+  {
+    title: "Date",
+    key: "date",
+    render: (_, record) => record.time_slot?.date,
+  },
+  {
+    title: "Heure",
+    key: "time",
+    render: (_, record) => record.time_slot?.time,
   },
   {
     title: "Action",
@@ -71,7 +73,31 @@ const columns: TableProps<Booking>["columns"] = [
 ];
 
 export default function Bookings() {
-  return (
+  const [data, setData] = useState<Booking[]>([]);
+  const [loading, setLoading] = useState<boolean>(false);
+
+  useEffect(() => {
+    setLoading(true);
+
+    axiosInstance
+      .get(`/bookings`)
+      .then((resp: { data: Booking[] }) => {
+        console.log(resp.data);
+        setData(resp.data);
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.error("erreur lors de la récupération des bookings :", err);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  }, []);
+  return loading ? (
+    <div className="slots-loader">
+      <LoaderInline />
+    </div>
+  ) : (
     <div>
       <h2>Réservations</h2>
       <Table columns={columns} dataSource={data} rowKey="id" />

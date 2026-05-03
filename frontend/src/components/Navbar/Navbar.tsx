@@ -54,6 +54,7 @@ export default function Navbar() {
             onClick={() => {
               logout();
               handleCloseNavBar();
+              navigate("/");
             }}
             className="nav-logout"
           >

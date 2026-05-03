@@ -38,6 +38,11 @@ export function BookingForm({
     { value: "resa_enfant", label: "Séance enfant" },
   ];
 
+  const subjectPlace = [
+    { value: "visio", label: "En visio" },
+    { value: "presentiel", label: "En présentiel" },
+  ];
+
   return (
     <div>
       <h2>Finaliser ma demande</h2>
@@ -85,11 +90,22 @@ export function BookingForm({
 
         <Form.Item
           name="subject"
-          rules={[{ required: true, message: "Choisissez un sujet" }]}
+          rules={[{ required: true, message: "Choisissez le type de séance" }]}
         >
           <Select
             placeholder="Choisir le type de séance"
             options={subjectOptions}
+            size="large"
+          />
+        </Form.Item>
+
+        <Form.Item
+          name="subject_place"
+          rules={[{ required: true, message: "Choisissez le lieu" }]}
+        >
+          <Select
+            placeholder="Choisir le lieu"
+            options={subjectPlace}
             size="large"
           />
         </Form.Item>

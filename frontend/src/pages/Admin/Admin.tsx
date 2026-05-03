@@ -15,7 +15,9 @@ type MenuItem = Required<MenuProps>["items"][number];
 
 export default function Admin() {
   const [activeView, setActiveView] = useState("dashboard");
-  const { user } = useAuth();
+  const { user, isLoading } = useAuth();
+
+  if (isLoading) return null;
 
   const onClick: MenuProps["onClick"] = (e) => {
     setActiveView(e.key);
