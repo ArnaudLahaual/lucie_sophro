@@ -1,0 +1,50 @@
+.admin-container {
+  height: 100vh;
+  background: #fff8f1;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* titre */
+.admin-title {
+  font-family: "Noto Serif", serif;
+  color: #74593d;
+  margin-bottom: 20px;
+}
+
+/* layout horizontal */
+.admin-layout {
+  flex: 1;
+  display: flex;
+  gap: 20px;
+  overflow: hidden;
+}
+
+/* sidebar */
+.admin-sidebar {
+  width: 260px;
+  background: white;
+  border-radius: 20px;
+  padding: 10px;
+
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+}
+
+/* force le menu à prendre toute la hauteur */
+.admin-sidebar .ant-menu {
+  border: none;
+  background: transparent;
+}
+
+/* contenu */
+.admin-main {
+  flex: 1;
+  background: white;
+  border-radius: 25px;
+  padding: 25px;
+
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.06);
+
+  overflow-y: auto;
+}
