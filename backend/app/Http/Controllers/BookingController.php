@@ -71,4 +71,10 @@ class BookingController extends Controller
             ], $error->getCode() ?: 500);
         }
     }
+
+    public function index()
+    {
+        $bookings = Booking::with('timeSlot')->get();
+        return response() -> json($bookings);
+    }
 }
