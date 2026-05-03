@@ -21,6 +21,7 @@ class BookingController extends Controller
             'email'        => 'required|email',
             'phone'        => 'required|string|max:20',
             'subject'      => 'required|string|max:100',
+            'subject_place'      => 'required|string|max:100',
             'time_slot_id' => 'required|integer|exists:time_slots,id'
         ]);
 
@@ -75,6 +76,6 @@ class BookingController extends Controller
     public function index()
     {
         $bookings = Booking::with('timeSlot')->get();
-        return response() -> json($bookings);
+        return response()->json($bookings);
     }
 }

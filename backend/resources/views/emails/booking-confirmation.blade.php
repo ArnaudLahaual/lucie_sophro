@@ -5,4 +5,5 @@
 <p><strong>Date :</strong> {{ $booking->timeSlot->date }}</p>
 <p><strong>Heure :</strong> {{ $booking->timeSlot->time }}</p>
 <p><strong>Type de séance :</strong> {{ $booking->subject }}</p>
+<p><strong>Lieu de la séance :</strong> {{ $booking->subject_place }}</p>
 <p>À bientôt !</p>

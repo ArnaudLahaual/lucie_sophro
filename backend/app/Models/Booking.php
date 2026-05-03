@@ -15,8 +15,8 @@ class Booking extends Model
         'email',
         'phone',
         'subject',
+        'subject_place',
         'time_slot_id',
-
     ];
 
     public function timeSlot()
