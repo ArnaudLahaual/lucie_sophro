@@ -4,6 +4,7 @@ import { Table } from "antd";
 import type { TableProps } from "antd/lib";
 import LoaderInline from "../../components/Loader/LoaderInline";
 import "../../components/Loader/LoaderInline.css";
+import TableData from "../../components/TableData/TableData";
 
 type Booking = {
   id: number;
@@ -76,11 +77,12 @@ export default function Dashboard() {
                 ? `Vous avez ${data.length} réservation${data.length > 1 ? "s" : ""}`
                 : "Aucune réservation ce jour"}
             </p>
-            <Table
+            <TableData
+              columns={columns}
               dataSource={data}
               rowKey="id"
               pagination={false}
-              columns={columns}
+              loading={loading}
             />
           </div>
         )}
