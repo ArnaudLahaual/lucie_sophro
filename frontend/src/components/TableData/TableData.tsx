@@ -7,6 +7,7 @@ type Props<T> = {
   loading?: boolean;
   rowKey: string;
   pagination?: boolean;
+  rowSelection?: TableProps<T>["rowSelection"];
 };
 
 export default function TableData<T>({
@@ -15,6 +16,7 @@ export default function TableData<T>({
   loading = false,
   rowKey,
   pagination = true,
+  rowSelection,
 }: Props<T>) {
   return (
     <Table
@@ -23,6 +25,7 @@ export default function TableData<T>({
       loading={loading}
       rowKey={rowKey}
       pagination={pagination}
+      rowSelection={rowSelection}
     />
   );
 }

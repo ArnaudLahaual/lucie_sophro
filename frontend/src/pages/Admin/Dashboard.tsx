@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import axiosInstance from "../../api/axiosconfig";
-import { Table } from "antd";
 import type { TableProps } from "antd/lib";
 import LoaderInline from "../../components/Loader/LoaderInline";
 import "../../components/Loader/LoaderInline.css";

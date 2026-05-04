@@ -1,10 +1,10 @@
-import { Space } from "antd";
-import type { TableProps } from "antd";
+import { Button, Space, type TableProps } from "antd";
 import { useEffect, useState } from "react";
 import axiosInstance from "../../api/axiosconfig";
 import LoaderInline from "../../components/Loader/LoaderInline";
 import "../../components/Loader/LoaderInline";
 import TableData from "../../components/TableData/TableData";
+import type { TableRowSelection } from "antd/lib/table/interface";
 
 type Booking = {
   id: number;
@@ -22,23 +22,23 @@ type Booking = {
 
 export default function Bookings() {
   const [data, setData] = useState<Booking[]>([]);
-  const [loading, setLoading] = useState<boolean>(false);
+  const [loadingSpinner, setloadingSpinner] = useState<boolean>(false);
+  const [selectedRowKeys, setSelectedRowKeys] = useState<React.Key[]>([]);
 
   useEffect(() => {
-    setLoading(true);
+    setloadingSpinner(true);
 
     axiosInstance
       .get(`/bookings`)
       .then((resp: { data: Booking[] }) => {
-        console.log(resp.data);
         setData(resp.data);
-        setLoading(false);
+        setloadingSpinner(false);
       })
       .catch((err) => {
         console.error("erreur lors de la récupération des bookings :", err);
       })
       .finally(() => {
-        setLoading(false);
+        setloadingSpinner(false);
       });
   }, []);
 
@@ -130,14 +130,32 @@ export default function Bookings() {
       key: "action",
       render: (_, record) => (
         <Space>
-          <a>Modifier</a>
-          <a style={{ color: "red" }}>Supprimer</a>
+          <Button
+            danger
+            onClick={() => {
+              console.log(record);
+            }}
+          >
+            Supprimer
+          </Button>
         </Space>
       ),
     },
   ];
 
-  return loading ? (
+  const onSelectChange = (newSelectedRowKeys: React.Key[]) => {
+    console.log("selectedRowKeys changed: ", newSelectedRowKeys);
+    setSelectedRowKeys(newSelectedRowKeys);
+  };
+
+  const rowSelection: TableRowSelection<Booking> = {
+    selectedRowKeys,
+    onChange: onSelectChange,
+  };
+
+  const hasSelected = selectedRowKeys.length > 0;
+
+  return loadingSpinner ? (
     <div className="slots-loader">
       <LoaderInline />
     </div>
@@ -148,7 +166,8 @@ export default function Bookings() {
         dataSource={data}
         columns={columns}
         rowKey="id"
-        loading={loading}
+        rowSelection={rowSelection}
+        loadingSpinner={loadingSpinner}
       />{" "}
     </div>
   );
