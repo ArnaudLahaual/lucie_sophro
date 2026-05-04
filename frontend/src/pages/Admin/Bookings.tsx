@@ -99,26 +99,31 @@ export default function Bookings() {
     },
     {
       title: "Date",
+      dataIndex: ["time_slot", "date"],
       key: "date",
-      render: (_, record) => record.time_slot?.date,
+
       filters: [...new Set(data.map((d) => d.time_slot.date))].map((date) => ({
         text: date,
         value: date,
       })),
+
       onFilter: (value, record) => record.time_slot?.date === value,
+
       sorter: (a, b) => a.time_slot.date.localeCompare(b.time_slot.date),
+
       sortDirections: ["ascend", "descend"],
-      
     },
     {
       title: "Heure",
+      dataIndex: ["time_slot", "time"],
       key: "time",
-      render: (_, record) => record.time_slot?.time,
+
       filters: [...new Set(data.map((d) => d.time_slot.time))].map((time) => ({
         text: time,
         value: time,
       })),
-      onFilter: (value, record) => record.time_slot.time === value,
+
+      onFilter: (value, record) => record.time_slot?.time === value,
     },
     {
       title: "Action",
