@@ -6,6 +6,7 @@ use App\Mail\BookingReceived;
 use App\Mail\BookingConfirmation;
 use App\Models\Booking;
 use App\Models\TimeSlot;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
@@ -77,5 +78,38 @@ class BookingController extends Controller
     {
         $bookings = Booking::with('timeSlot')->get();
         return response()->json($bookings);
+    }
+
+    public function today()
+    {
+        $bookings = Booking::with('timeSlot')
+            ->whereHas('timeSlot', function ($query) {
+                $query->whereDate('date', Carbon::today());
+            })
+            ->get();
+
+        return response()->json($bookings);
+    }
+
+    public function destroyBatch(Request $request)
+    {
+        $ids = $request->input('ids', []);
+
+        if (empty($ids)) {
+            return response()->json([
+                'message' => 'Aucun ID fourni'
+            ], 422);
+        }
+
+        $bookings = Booking::with('timeSlot')->whereIn('id', $ids)->get();
+        DB::transaction(function () use ($bookings) {
+            foreach ($bookings as $booking) {
+                if ($booking->timeSlot) {
+                    $booking->timeSlot->update(['is_available' => true]);
+                }
+                $booking->delete();
+            }
+        });
+        return response()->json(['message' => 'Réservations supprimées']);
     }
 }

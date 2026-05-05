@@ -19,6 +19,8 @@ Route::post('/login', [AuthController::class, 'login']);
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('/logout', [AuthController::class, 'logout']);
     Route::get('/me', fn(Request $request) => response()->json($request->user()));
+    Route::get('/bookings/today', [BookingController::class, 'today']);
     Route::get('/bookings', [BookingController::class, 'index']);
+    Route::post('/bookings/delete', [BookingController::class, 'destroyBatch']);
     // futures routes back ofFfice
 });
