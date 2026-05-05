@@ -3,7 +3,9 @@ import { useAuth } from "../../context/AuthContext";
 import {
   AppstoreOutlined,
   MailOutlined,
+  MessageOutlined,
   SettingOutlined,
+  UserOutlined,
 } from "@ant-design/icons";
 import type { MenuProps } from "antd";
 import { Menu } from "antd";
@@ -41,10 +43,22 @@ export default function Admin() {
       key: "slots",
       icon: <SettingOutlined />,
       label: "Créneaux",
-      children: [
-        { key: "slots-list", label: "Gérer les créneaux" },
-        { key: "slots-block", label: "Bloquer une date" },
-      ],
+      children: [{ key: "slots-block", label: "Bloquer une date" }],
+    },
+    {
+      key: "clients",
+      icon: <UserOutlined />,
+      label: "Clients",
+    },
+    {
+      key: "messages",
+      icon: <MessageOutlined />,
+      label: "Messages",
+    },
+    {
+      key: "settings",
+      icon: <SettingOutlined />,
+      label: "Paramètres",
     },
   ];
 
