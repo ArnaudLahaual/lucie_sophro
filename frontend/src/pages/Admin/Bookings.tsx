@@ -1,10 +1,12 @@
-import { Button, Space, type TableProps } from "antd";
+import { Button, type TableProps } from "antd";
 import { useEffect, useState } from "react";
 import axiosInstance from "../../api/axiosconfig";
 import LoaderInline from "../../components/Loader/LoaderInline";
 import "../../components/Loader/LoaderInline";
 import TableData from "../../components/TableData/TableData";
 import type { TableRowSelection } from "antd/lib/table/interface";
+import { useSnackbar } from "notistack";
+import { ModalDeleteBooking } from "../Reservations/components/ModalDeleteBooking";
 
 type Booking = {
   id: number;
@@ -24,6 +26,11 @@ export default function Bookings() {
   const [data, setData] = useState<Booking[]>([]);
   const [loadingSpinner, setloadingSpinner] = useState<boolean>(false);
   const [selectedRowKeys, setSelectedRowKeys] = useState<React.Key[]>([]);
+  const { enqueueSnackbar } = useSnackbar();
+  const [open, setOpen] = useState(false);
+
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
   useEffect(() => {
     setloadingSpinner(true);
@@ -125,26 +132,26 @@ export default function Bookings() {
 
       onFilter: (value, record) => record.time_slot?.time === value,
     },
-    {
-      title: "Action",
-      key: "action",
-      render: (_, record) => (
-        <Space>
-          <Button
-            danger
-            onClick={() => {
-              console.log(record);
-            }}
-          >
-            Supprimer
-          </Button>
-        </Space>
-      ),
-    },
+    // {
+    //   title: "Action",
+    //   key: "action",
+    //   render: (_, record) => (
+    //     <Space>
+    //       <Button
+    //         danger
+    //         onClick={() => {
+    //           console.log(record);
+    //         }}
+    //       >
+    //         Supprimer
+    //       </Button>
+    //     </Space>
+    //   ),
+    // },
   ];
 
   const onSelectChange = (newSelectedRowKeys: React.Key[]) => {
-    console.log("selectedRowKeys changed: ", newSelectedRowKeys);
+    // console.log("selectedRowKeys changed: ", newSelectedRowKeys);
     setSelectedRowKeys(newSelectedRowKeys);
   };
 
@@ -155,19 +162,69 @@ export default function Bookings() {
 
   const hasSelected = selectedRowKeys.length > 0;
 
+  // const handleDelete = async () => {
+  //   try {
+  //     await axiosInstance.post("/bookings/delete", {
+  //       ids: selectedRowKeys,
+  //     });
+  //     enqueueSnackbar("Réservation supprimée", {
+  //       variant: "success",
+  //     });
+  //     setData((prev) =>
+  //       prev.filter((item) => !selectedRowKeys.includes(item.id)),
+  //     );
+
+  //     setSelectedRowKeys([]);
+  //   } catch (error: any) {
+  //     const message =
+  //       error.response?.data?.message ||
+  //       "Erreur de suppression des réservations";
+
+  //     enqueueSnackbar(message, {
+  //       variant: "error",
+  //     });
+  //     console.error("Erreur suppression :", error);
+  //   }
+  // };
+
+  const selectedBookings = data.filter((item) =>
+    selectedRowKeys.includes(item.id),
+  );
+
   return loadingSpinner ? (
     <div className="slots-loader">
       <LoaderInline />
     </div>
   ) : (
     <div>
-      <h2>Réservations</h2>
+      <div
+        style={{
+          display: "flex",
+          alignContent: "center",
+          justifyContent: "space-between",
+        }}
+      >
+        <h2>Réservations</h2>
+        {hasSelected && (
+          <Button danger onClick={handleOpen}>
+            Supprimer {selectedRowKeys.length}
+          </Button>
+        )}
+      </div>
+      <ModalDeleteBooking
+        open={open}
+        onCancel={handleClose}
+        setData={setData}
+        selectedRowKeys={selectedRowKeys}
+        setSelectedRowKeys={setSelectedRowKeys}
+        selectedBookings={selectedBookings}
+      />
       <TableData
         dataSource={data}
         columns={columns}
         rowKey="id"
         rowSelection={rowSelection}
-        loadingSpinner={loadingSpinner}
+        loading={loadingSpinner}
       />{" "}
     </div>
   );
