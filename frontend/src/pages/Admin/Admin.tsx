@@ -12,6 +12,7 @@ import { Menu } from "antd";
 import "./Admin.css";
 import Dashboard from "./Dashboard";
 import Bookings from "./Bookings";
+import Slots from "./Slots";
 
 type MenuItem = Required<MenuProps>["items"][number];
 
@@ -75,7 +76,7 @@ export default function Admin() {
           {activeView === "dashboard" && <Dashboard />}
           {activeView === "bookings" && <Bookings />}
           {activeView === "slots-list" && <p>🕒 Gestion des créneaux</p>}
-          {activeView === "slots-block" && <p>🚫 Bloquer une date</p>}
+          {activeView === "slots-block" && <Slots />}
         </main>
       </div>
     </div>

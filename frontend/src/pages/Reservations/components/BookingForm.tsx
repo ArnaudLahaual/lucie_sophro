@@ -60,12 +60,7 @@ export function BookingForm({
           setIsModalOpen(true);
         }}
       >
-        <Form.Item
-          name="lastname"
-          rules={[{ required: true, message: "Nom obligatoire" }]}
-        >
-          <Input placeholder="Nom" />
-        </Form.Item>
+        <div>
 
         <Form.Item
           name="firstname"
@@ -73,6 +68,18 @@ export function BookingForm({
         >
           <Input placeholder="Prénom" />
         </Form.Item>
+
+        <Form.Item
+          name="lastname"
+          rules={[{ required: true, message: "Nom obligatoire" }]}
+        >
+          <Input placeholder="Nom" />
+        </Form.Item>
+
+
+        </div>
+
+
 
         <Form.Item
           name="email"
