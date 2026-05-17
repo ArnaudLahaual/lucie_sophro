@@ -22,5 +22,4 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/bookings/today', [BookingController::class, 'today']);
     Route::get('/bookings', [BookingController::class, 'index']);
     Route::post('/bookings/delete', [BookingController::class, 'destroyBatch']);
-    // futures routes back ofFfice
 });

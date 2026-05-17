@@ -34,7 +34,7 @@ class ContactController extends Controller
         );
 
         //mail admin
-        Mail::to('arnaud.lahaual@gmail.com')->send(
+        Mail::to('arnaud.test@gmail.com')->send(
             new ContactMessageReceived($contactMessage)
         );
 
