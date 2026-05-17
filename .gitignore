@@ -1,1 +1,9 @@
-node_modules
+# Fichiers médias et divers racine
+*.png
+*.jpg
+*.jpeg
+*.svg
+*.html
+package.json
+package-lock.json
+node_modules/
