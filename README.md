@@ -16,7 +16,7 @@ Application web fullstack développée pour une sophrologue indépendante, perme
 
 ### Côté praticienne (back-office privé)
 - 🔐 Authentification sécurisée (Laravel Sanctum)
-- 📋 Vue d'ensemble des réservations à venir
+- 📋 Vue d'ensemble des réservations et dashboard résumé
 - ❌ Annulation de créneaux // en cours de développement
 - 🗓️ Gestion des disponibilités : blocage de jours (congés, urgences) et ouverture de jours exceptionnels (ex: samedi) // en cours de développement
 
