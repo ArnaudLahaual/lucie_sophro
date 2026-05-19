@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const axiosInstance = axios.create({
-  baseURL: "http://127.0.0.1:8000/api",
+  baseURL: import.meta.env.VITE_API_URL,
   headers: {
     "Content-Type": "application/json",
     Accept: "application/json",
@@ -11,7 +11,7 @@ const axiosInstance = axios.create({
 
 //ça part dans toutes les requpetes envoyées
 axiosInstance.interceptors.request.use(
-  (config) => {
+  (config: any) => {
     const token = localStorage.getItem("token");
 
     if (token) {
