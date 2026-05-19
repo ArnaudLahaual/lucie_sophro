@@ -3,7 +3,6 @@
 *.jpg
 *.jpeg
 *.svg
-*.html
 package.json
 package-lock.json
 node_modules/

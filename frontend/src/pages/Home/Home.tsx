@@ -12,8 +12,6 @@ export default function Home() {
       <main>
         <section className="hero">
           <div className="hero-content">
-            <span className="badge">Sophrologie & Bien-être</span>
-
             <h1>
               Retrouvez votre <span>équilibre</span> intérieur
             </h1>

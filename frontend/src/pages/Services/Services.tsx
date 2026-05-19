@@ -16,7 +16,6 @@ export default function Services() {
         </p>
       </div>
 
-      {/* POUR QUI */}
       <section className="services-section">
         <h2>Pour qui ?</h2>
         <div className="services-grid">
@@ -40,7 +39,6 @@ export default function Services() {
         </p>
       </section>
 
-      {/* PROBLEMATIQUES */}
       <section className="services-section">
         <h2>Problématiques accompagnées</h2>
         <div className="services-grid">
@@ -71,7 +69,6 @@ export default function Services() {
         </div>
       </section>
 
-      {/* DEROULEMENT */}
       <section className="services-section">
         <h2>Déroulement d'une séance</h2>
         <div className="steps">
@@ -90,7 +87,6 @@ export default function Services() {
         </div>
       </section>
 
-      {/* TARIFS */}
       <section className="services-section">
         <h2>Tarifs</h2>
         <div className="pricing">
@@ -109,7 +105,6 @@ export default function Services() {
         </div>
       </section>
 
-      {/* INFOS */}
       <section className="services-section info">
         <h2>Informations</h2>
         <p>
