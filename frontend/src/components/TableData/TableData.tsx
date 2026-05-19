@@ -1,12 +1,12 @@
 import { Table } from "antd";
-import type { TableProps } from "antd";
+import type { TableProps, TablePaginationConfig } from "antd";
 
 type Props<T> = {
   columns: TableProps<T>["columns"];
   dataSource: T[];
   loading?: boolean;
   rowKey: string;
-  pagination?: boolean;
+  pagination?: boolean | TablePaginationConfig;
   rowSelection?: TableProps<T>["rowSelection"];
 };
 
