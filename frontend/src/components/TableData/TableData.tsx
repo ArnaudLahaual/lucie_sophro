@@ -24,7 +24,7 @@ export default function TableData<T>({
       dataSource={dataSource}
       loading={loading}
       rowKey={rowKey}
-      pagination={pagination}
+      pagination={pagination ? {} : false}
       rowSelection={rowSelection}
     />
   );
