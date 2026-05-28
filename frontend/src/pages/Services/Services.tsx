@@ -5,15 +5,18 @@ import ElderlyIcon from "@mui/icons-material/Elderly";
 import PsychologyIcon from "@mui/icons-material/Psychology";
 import SpaIcon from "@mui/icons-material/Spa";
 import AirIcon from "@mui/icons-material/Air";
+import { Tooltip } from "antd";
 
 export default function Services() {
   return (
     <div className="services-container">
       <div className="about-hero">
-        <h1>Mes accompagnements</h1>
-        <p className="services-subtitle">
-          Un accompagnement adapté à chacun, à chaque étape de la vie
-        </p>
+        <div className="hero-content">
+          <h1>Mes accompagnements</h1>
+          <p className="hero-subtitle">
+            Un accompagnement adapté à chacun, à chaque étape de la vie
+          </p>
+        </div>
       </div>
 
       <section className="services-section">
@@ -55,7 +58,7 @@ export default function Services() {
             <p>Gestion des émotions</p>
           </div>
           <div className="card">
-            <AirIcon  className="icon" />
+            <AirIcon className="icon" />
             <p>Confiance en soi</p>
           </div>
           <div className="card">
@@ -63,8 +66,14 @@ export default function Services() {
             <p>Fatigue mentale et physique</p>
           </div>
           <div className="card">
-            <PsychologyIcon className="icon" />
-            <p>Préparation (examens…)</p>
+            <Tooltip
+              title="(préparation à l’accouchement,
+              permis de conduire, compétition,
+              entretien professionnel…)"
+            >
+              <PsychologyIcon className="icon" />
+              <p>Préparation mentale ...</p>
+            </Tooltip>
           </div>
         </div>
       </section>

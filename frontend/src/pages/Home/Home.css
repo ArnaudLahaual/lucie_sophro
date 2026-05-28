@@ -16,6 +16,11 @@
   max-width: 800px;
 }
 
+.hero-content h1 {
+  /* color: #5b3a36; */
+  color: #7a5c52;
+}
+
 .badge {
   background: #e8e1da;
   padding: 6px 14px;
@@ -101,7 +106,7 @@
 }
 .benefit p {
   margin-top: 5px;
-  color: #4a6f5d!important;
+  color: #4a6f5d !important;
   /* font-style: italic; */
 }
 /* CTA */

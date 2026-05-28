@@ -11,9 +11,9 @@ export default function Navbar() {
   const isLogged = !!user && !!token;
 
   const links = [
-    { path: "/", label: "HOME" },
+    { path: "/", label: "ACCUEIL" },
     { path: "/services", label: "SPECIALITES" },
-    { path: "/reservations", label: "BOOKING" },
+    { path: "/reservations", label: "RESERVATIONS" },
     { path: "/contact", label: "CONTACT" },
     { path: "/about", label: "A PROPOS" },
     ...(isLogged ? [{ path: "/admin", label: "DASHBOARD" }] : []),

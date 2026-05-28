@@ -2,40 +2,95 @@
   min-height: 100vh;
   padding: 80px 20px 40px 20px;
   background: #fff8f1;
+
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
+/* ===================== */
 /* HERO */
-.about-hero {
-  background: rgba(184, 152, 120, 0.15);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+/* ===================== */
 
-  border-radius: 20px;
-  padding: 50px 30px;
+.about-hero {
+  position: relative;
 
   width: 100%;
   max-width: 900px;
+  height: 320px;
+
   margin-bottom: 50px;
 
+  border-radius: 20px;
+  overflow: hidden;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
   text-align: center;
+
+  background-image: url("../../assets/Gemini_Generated_Image_6ns2ym6ns2ym6ns2.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+}
+
+/* overlay sombre */
+/* .about-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35);
+  z-index: 1;
+} */
+
+/* contenu hero */
+.hero-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 45px;
+  left: 47px;
+}
+
+/* TITRE */
+.hero-content h1 {
+  font-size: 38px;
+  font-family: "Noto Serif", serif;
+  margin: 0;
+  color: #5f4934;
+}
+
+/* SOUS-TITRE */
+.hero-subtitle {
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.85);
+  max-width: 600px;
+  margin: 0;
+  color: #5f4934;
 }
 
 .about-hero h1 {
   font-size: 38px;
   font-family: "Noto Serif", serif;
-  color: #74593d;
+  color: #5f4934;
 }
 
 .services-subtitle {
-  color: #7a6a58;
+  color: rgba(255, 255, 255, 0.85);
   margin-top: 15px;
   font-size: 16px;
+  max-width: 600px;
 }
 
-/* SECTION WRAPPER */
+/* ===================== */
+/* SECTIONS */
+/* ===================== */
 
 .services-section {
   margin-bottom: 70px;
@@ -47,13 +102,13 @@
   align-items: center;
   text-align: center;
 }
+
 .services-section h2 {
   margin-bottom: 25px;
   color: #74593d;
   font-family: "Noto Serif", serif;
   font-size: 24px;
   position: relative;
-  text-align: center;
 }
 
 .services-section h2::after {
@@ -69,12 +124,11 @@
 .services-text {
   margin-top: 20px;
   color: #666;
-  text-align: center;
   max-width: 600px;
 }
 
 /* ===================== */
-/* FLEX CONTAINERS */
+/* GRIDS */
 /* ===================== */
 
 .services-grid {
@@ -86,7 +140,10 @@
   margin-top: 10px;
 }
 
+/* ===================== */
 /* CARD */
+/* ===================== */
+
 .card {
   flex: 1 1 250px;
   max-width: 300px;
@@ -95,15 +152,17 @@
   flex-direction: column;
   align-items: center;
 
-  background: rgba(255, 255, 255, 0.7);
+  background: rgba(255, 255, 255, 0.75);
   backdrop-filter: blur(6px);
 
   border-radius: 20px;
   padding: 25px;
 
-  transition: all 0.3s ease;
   cursor: pointer;
+
+  transition: all 0.3s ease;
 }
+
 .card .icon {
   font-size: 30px;
   color: #b89878;
@@ -115,6 +174,10 @@
   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
 }
 
+/* ===================== */
+/* STEPS */
+/* ===================== */
+
 .steps {
   display: flex;
   flex-direction: column;
@@ -125,24 +188,33 @@
 .step {
   display: flex;
   align-items: center;
+  justify-content: center;
+
   background: rgba(255, 255, 255, 0.8);
   border-radius: 20px;
   padding: 20px;
   gap: 15px;
+
+  transition: all 0.3s ease;
 }
 
 .step span {
   background: #b89878;
   color: white;
+
   border-radius: 50%;
   width: 30px;
   height: 30px;
+
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
+/* ===================== */
 /* PRICING */
+/* ===================== */
+
 .pricing {
   display: flex;
   flex-wrap: wrap;
@@ -160,8 +232,9 @@
   border-radius: 20px;
   padding: 25px;
 
-  transition: 0.3s ease;
   text-align: center;
+
+  transition: 0.3s ease;
 }
 
 .price-card span {
@@ -175,11 +248,18 @@
   transform: scale(1.05);
 }
 
+/* ===================== */
 /* INFO */
+/* ===================== */
+
 .info p {
   color: #555;
   text-align: center;
 }
+
+/* ===================== */
+/* GLOBAL ANIMATIONS */
+/* ===================== */
 
 .card,
 .price-card,
@@ -191,23 +271,23 @@
 /* RESPONSIVE */
 /* ===================== */
 
-@media (min-width: 768px) {
-  .steps {
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-    text-align: center;
-  }
-
-  .step {
-    display: flex;
-    justify-content: center;
-    flex: 1 1 250px;
-    max-width: 300px;
+@media (max-width: 768px) {
+  .about-hero {
+    height: 240px;
+    border-radius: 15px;
   }
 
   .about-hero h1 {
-    font-size: 34px;
+    font-size: 28px;
+  }
+
+  .services-subtitle {
+    font-size: 14px;
+    padding: 0 10px;
+  }
+
+  .step {
+    flex-direction: column;
   }
 }
 
