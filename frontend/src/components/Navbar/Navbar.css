@@ -166,7 +166,7 @@
 
 /* ========================= */
 /* TABLETTE */
-/* ========================= */
+/* =====================<==== */
 @media (max-width: 1024px) {
   .cta-home {
     display: none;
@@ -196,18 +196,50 @@
     position: fixed;
     top: 70px;
     left: 0;
+
     width: 100%;
     height: calc(100vh - 70px);
-    overflow: hidden;
-    background: #fff8f1;
+
+    display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 70px;
-    display: none;
+
+    gap: 50px;
+
+    background: rgba(255, 248, 241, 0.92);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+
+    opacity: 0;
+    transform: translateY(10px);
+    pointer-events: none;
+
+    transition: all 0.35s ease;
+
+    z-index: 999;
   }
 
   .menu.open {
-    display: flex;
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: all;
+  }
+
+  .menu.open::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+
+    background: rgba(255, 248, 241, 0.4);
+    backdrop-filter: blur(6px);
+
+    z-index: -1;
+  }
+
+  .menu a,
+  .nav-logout {
+    font-size: 18px;
+    letter-spacing: 2px;
   }
 }
