@@ -7,7 +7,7 @@ import SpaIcon from "@mui/icons-material/Spa";
 import AirIcon from "@mui/icons-material/Air";
 import { Tooltip } from "antd";
 
-import heroImg from "../../assets/daniil-silantev-sN4u56baSB0-unsplash.jpg";
+import heroImg from "../../assets/jared-rice-NTyBbu66_SI-unsplash.jpg";
 import { useNavigate } from "react-router-dom";
 
 export default function Services() {
