@@ -250,8 +250,8 @@
     height: 260px;
   }
 
-.services-grid {
-  flex-wrap: wrap;
-  justify-content: center;
-}
+  .services-grid {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
 }
