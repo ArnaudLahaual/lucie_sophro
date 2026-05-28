@@ -34,12 +34,6 @@ export default function Home() {
               mieux-être durable, à votre rythme.{" "}
             </p>
 
-            <div className="hero-points">
-              <span>🌿 Gestion du stress</span>
-              <span>💨 Respiration</span>
-              <span>🧠 Équilibre émotionnel</span>
-            </div>
-
             <div className="hero-buttons">
               <button
                 onClick={() => navigate("/reservations")}
