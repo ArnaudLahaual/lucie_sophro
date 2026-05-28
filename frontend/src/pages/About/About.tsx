@@ -8,7 +8,6 @@ export default function About() {
   return (
     <div className="about-container">
       <main>
-        {/* HERO */}
         <div className="about-hero">
           <h1>Qui suis-je ?</h1>
         </div>

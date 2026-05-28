@@ -7,29 +7,38 @@ import SpaIcon from "@mui/icons-material/Spa";
 import AirIcon from "@mui/icons-material/Air";
 import { Tooltip } from "antd";
 
+import heroImg from "../../assets/daniil-silantev-sN4u56baSB0-unsplash.jpg";
+
 export default function Services() {
   return (
     <div className="services-container">
-      <div className="about-hero">
-        <div className="hero-content">
-          <h1>Mes accompagnements</h1>
-          <p className="hero-subtitle">
-            Un accompagnement adapté à chacun, à chaque étape de la vie
-          </p>
+      <section className="hero-wrapper">
+        <div className="hero">
+          <div className="hero-text">
+            <h1>Mes accompagnements</h1>
+            <p>Un accompagnement adapté à chacun, à chaque étape de la vie.</p>
+          </div>
+
+          <div className="hero-image">
+            <img src={heroImg} alt="Cabinet de sophrologie" />
+          </div>
         </div>
-      </div>
+      </section>
 
       <section className="services-section">
         <h2>Pour qui ?</h2>
+
         <div className="services-grid">
           <div className="card">
             <ChildCareIcon className="icon" />
             <p>Les enfants</p>
           </div>
+
           <div className="card">
             <SelfImprovementIcon className="icon" />
             <p>Les adultes</p>
           </div>
+
           <div className="card">
             <ElderlyIcon className="icon" />
             <p>Les seniors</p>
@@ -37,13 +46,14 @@ export default function Services() {
         </div>
 
         <p className="services-text">
-          Que vous traversiez une période difficile ou que vous souhaitiez
-          simplement améliorer votre bien-être au quotidien.
+          Que vous traversiez une période difficile ou souhaitiez simplement
+          améliorer votre bien-être.
         </p>
       </section>
 
       <section className="services-section">
         <h2>Problématiques accompagnées</h2>
+
         <div className="services-grid">
           <div className="card">
             <PsychologyIcon className="icon" />
@@ -63,23 +73,21 @@ export default function Services() {
           </div>
           <div className="card">
             <SpaIcon className="icon" />
-            <p>Fatigue mentale et physique</p>
+            <p>Fatigue mentale</p>
           </div>
-          <div className="card">
-            <Tooltip
-              title="(préparation à l’accouchement,
-              permis de conduire, compétition,
-              entretien professionnel…)"
-            >
+
+          <Tooltip title="Préparation mentale : accouchement, permis, entretien...">
+            <div className="card">
               <PsychologyIcon className="icon" />
-              <p>Préparation mentale ...</p>
-            </Tooltip>
-          </div>
+              <p>Préparation mentale</p>
+            </div>
+          </Tooltip>
         </div>
       </section>
 
       <section className="services-section">
         <h2>Déroulement d'une séance</h2>
+
         <div className="steps">
           <div className="step">
             <span>1</span>
@@ -87,7 +95,7 @@ export default function Services() {
           </div>
           <div className="step">
             <span>2</span>
-            <p>Exercices de respiration dynamique</p>
+            <p>Respiration dynamique</p>
           </div>
           <div className="step">
             <span>3</span>
@@ -98,15 +106,18 @@ export default function Services() {
 
       <section className="services-section">
         <h2>Tarifs</h2>
+
         <div className="pricing">
           <div className="price-card">
             <p>Séance individuelle</p>
             <span>50 €</span>
           </div>
+
           <div className="price-card">
             <p>Séance enfant</p>
             <span>45 €</span>
           </div>
+
           <div className="price-card">
             <p>Séance groupe</p>
             <span>Sur demande</span>
@@ -120,7 +131,7 @@ export default function Services() {
           <strong>Durée :</strong> 1h
         </p>
         <p>
-          <strong>Règlement :</strong> espèces / cb / chèque
+          <strong>Règlement :</strong> espèces / CB / chèque
         </p>
       </section>
     </div>
