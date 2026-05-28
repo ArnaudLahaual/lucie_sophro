@@ -10,25 +10,21 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-
   gap: 40px;
-
   max-width: 1100px;
   margin: 0 auto;
-
   padding: 40px 10px;
 }
 
 .hero-text {
   flex: 1;
-  color: #7a5c52;
   text-align: left;
 }
 
 .hero-text h1 {
   font-size: 56px;
   line-height: 1.1;
-
+  color: #7a5c52;
   font-family: "Noto Serif", serif;
   margin-bottom: 20px;
 }
