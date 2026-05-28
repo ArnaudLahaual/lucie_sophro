@@ -4,7 +4,7 @@ import PersonIcon from "@mui/icons-material/Person";
 import SpaIcon from "@mui/icons-material/Spa";
 import WavesIcon from "@mui/icons-material/Waves";
 import GroupsIcon from "@mui/icons-material/Groups";
-
+import equilibreHome from "../../assets/equilibreHome.jpg";
 import { useNavigate } from "react-router-dom";
 
 export default function Home() {
@@ -14,7 +14,7 @@ export default function Home() {
     <div className="home-container">
       <main>
         <section className="hero">
-          <div className="home-hero-content">
+          <div className="hero-text">
             <h1>
               Retrouvez votre <span>équilibre</span> intérieur
             </h1>
@@ -23,15 +23,14 @@ export default function Home() {
               Je suis <strong>Lucie Bordeyne</strong>, sophrologue, j’accompagne
               enfants, adultes et seniors dans la gestion du stress.
             </p>
+
             <p>
-              Grâce à des techniques simples de respiration, de relaxation et de
-              visualisation, vous apprenez à vous reconnecter à vous-même et à
-              retrouver un équilibre intérieur.
+              Grâce à la respiration, la relaxation et la visualisation, vous
+              vous reconnectez à vous-même.
             </p>
+
             <p>
-              {" "}
-              Je vous accompagne avec douceur et bienveillance pour retrouver un
-              mieux-être durable, à votre rythme.{" "}
+              Un accompagnement doux et bienveillant pour un mieux-être durable.
             </p>
 
             <div className="hero-buttons">
@@ -49,6 +48,10 @@ export default function Home() {
                 Découvrir
               </button>
             </div>
+          </div>
+
+          <div className="hero-image">
+            <img src={equilibreHome} alt="Équilibre intérieur sophrologie" />
           </div>
         </section>
 
