@@ -7,6 +7,7 @@ import Services from "./pages/Services/Services";
 import About from "./pages/About/About";
 import Login from "./pages/Login/Login";
 import Admin from "./pages/Admin/Admin";
+import Accompagnements from "./pages/Accompagnements/Accompagnements";
 
 export function AppRoutes() {
   return (
@@ -19,6 +20,7 @@ export function AppRoutes() {
       <Route path="/about" element={<About />} />
       <Route path="/login" element={<Login />} />
       <Route path="/admin" element={<Admin />} />
+      <Route path="/accompagnements" element={<Accompagnements />} />
       <Route path="*" element={<Navigate to="/" />} />
     </Routes>
   );

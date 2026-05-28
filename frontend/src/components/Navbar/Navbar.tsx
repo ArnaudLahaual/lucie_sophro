@@ -14,6 +14,7 @@ export default function Navbar() {
     { path: "/", label: "ACCUEIL" },
     { path: "/services", label: "SPECIALITES" },
     { path: "/reservations", label: "RESERVATIONS" },
+    { path: "/accompagnements", label: "ACCOMPAGNEMENTS" },
     { path: "/contact", label: "CONTACT" },
     { path: "/about", label: "A PROPOS" },
     ...(isLogged ? [{ path: "/admin", label: "DASHBOARD" }] : []),

@@ -1,0 +1,171 @@
+/* ================= GLOBAL ================= */
+
+.acc-container {
+  min-height: 100vh;
+  padding: 80px 20px;
+  background: #fff8f1;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  font-family: "Manrope", sans-serif;
+}
+
+/* ================= HERO ================= */
+
+.acc-hero {
+  text-align: center;
+  max-width: 800px;
+  margin-bottom: 60px;
+}
+
+.acc-hero h1 {
+  font-size: 48px;
+  font-family: "Noto Serif", serif;
+  color: #7a5c52;
+  margin-bottom: 15px;
+}
+
+.acc-hero p {
+  font-size: 18px;
+  color: #6b6b6b;
+  line-height: 1.6;
+}
+
+/* ================= FLEX WRAPPER ================= */
+
+.acc-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+
+  width: 100%;
+  max-width: 1100px;
+}
+
+/* ================= CARD ================= */
+
+.acc-card {
+  flex: 1 1 260px;
+  max-width: 320px;
+
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(8px);
+
+  border-radius: 22px;
+  padding: 28px 24px;
+
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(184, 152, 120, 0.15);
+
+  /* animation propre */
+  opacity: 0;
+  transform: translateY(12px);
+  animation: fadeIn 0.6s ease forwards;
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.acc-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+}
+
+/* délai léger pour effet cascade */
+.acc-card:nth-child(1) {
+  animation-delay: 0.05s;
+}
+.acc-card:nth-child(2) {
+  animation-delay: 0.1s;
+}
+.acc-card:nth-child(3) {
+  animation-delay: 0.15s;
+}
+.acc-card:nth-child(4) {
+  animation-delay: 0.2s;
+}
+
+/* ================= TITLE ================= */
+
+.acc-card h2 {
+  font-size: 18px;
+  color: #b89878;
+  margin-bottom: 15px;
+  font-family: "Noto Serif", serif;
+}
+
+/* ================= LIST ================= */
+
+.acc-card ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.acc-card li {
+  color: #5f5f5f;
+  font-size: 15px;
+  line-height: 1.4;
+
+  padding-left: 10px;
+  position: relative;
+}
+
+.acc-card li::before {
+  content: "•";
+  color: #b89878;
+  position: absolute;
+  left: 0;
+}
+
+/* ================= NOTE ================= */
+
+.note {
+  margin-top: 15px;
+  font-size: 13px;
+  color: #8a8a8a;
+  font-style: italic;
+}
+
+/* ================= ANIMATION ================= */
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 768px) {
+  .acc-hero h1 {
+    font-size: 34px;
+  }
+
+  .acc-hero p {
+    font-size: 16px;
+  }
+
+  .acc-grid {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .acc-card {
+    width: 100%;
+    max-width: 100%;
+  }
+}

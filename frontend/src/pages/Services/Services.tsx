@@ -8,8 +8,10 @@ import AirIcon from "@mui/icons-material/Air";
 import { Tooltip } from "antd";
 
 import heroImg from "../../assets/daniil-silantev-sN4u56baSB0-unsplash.jpg";
+import { useNavigate } from "react-router-dom";
 
 export default function Services() {
+  const navigate = useNavigate();
   return (
     <div className="services-container">
       <section className="hero-wrapper">
@@ -82,6 +84,17 @@ export default function Services() {
               <p>Préparation mentale</p>
             </div>
           </Tooltip>
+        </div>
+
+        <div className="services-cta">
+          <p>Découvrir une approche globale de l’accompagnement</p>
+
+          <button
+            onClick={() => navigate("/accompagnements")}
+            className="services-btn"
+          >
+            En savoir plus
+          </button>
         </div>
       </section>
 
