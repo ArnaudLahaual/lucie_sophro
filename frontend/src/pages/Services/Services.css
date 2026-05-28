@@ -1,6 +1,6 @@
 .services-container {
   min-height: 100vh;
-  padding: 80px 20px 40px 20px;
+  padding: 80px 20px 40px;
   background: #fff8f1;
 
   display: flex;
@@ -24,11 +24,6 @@
   border-radius: 20px;
   overflow: hidden;
 
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-
   background-image: url("../../assets/Gemini_Generated_Image_6ns2ym6ns2ym6ns2.png");
   background-size: cover;
   background-position: center;
@@ -37,55 +32,48 @@
   box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
 }
 
-/* overlay sombre */
-/* .about-hero::before {
-  content: "";
+/* OVERLAY TEXTE */
+.hero-overlay {
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, 0.35);
-  z-index: 1;
-} */
 
-/* contenu hero */
+  display: flex;
+  align-items: center;
+
+  padding-left: 60px;
+  padding-right: 40px;
+}
+
+/* CONTENU */
 .hero-content {
-  position: relative;
-  z-index: 2;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  text-align: center;
-  gap: 45px;
-  left: 47px;
+  gap: 20px;
+
+  max-width: 420px;
+
+  text-align: left;
 }
 
 /* TITRE */
 .hero-content h1 {
-  font-size: 38px;
-  font-family: "Noto Serif", serif;
   margin: 0;
+
+  font-size: 42px;
+  line-height: 1.1;
+
+  font-family: "Noto Serif", serif;
   color: #5f4934;
 }
 
-/* SOUS-TITRE */
+/* SOUS TITRE */
 .hero-subtitle {
-  font-size: 16px;
-  color: rgba(255, 255, 255, 0.85);
-  max-width: 600px;
   margin: 0;
-  color: #5f4934;
-}
 
-.about-hero h1 {
-  font-size: 38px;
-  font-family: "Noto Serif", serif;
-  color: #5f4934;
-}
-
-.services-subtitle {
-  color: rgba(255, 255, 255, 0.85);
-  margin-top: 15px;
   font-size: 16px;
-  max-width: 600px;
+  line-height: 1.6;
+
+  color: #5f4934;
 }
 
 /* ===================== */
@@ -100,42 +88,53 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+
   text-align: center;
 }
 
 .services-section h2 {
   margin-bottom: 25px;
+
   color: #74593d;
   font-family: "Noto Serif", serif;
   font-size: 24px;
+
   position: relative;
 }
 
 .services-section h2::after {
   content: "";
+
   display: block;
+
   width: 40px;
   height: 2px;
+
   background: #b89878;
+
   margin: 10px auto 0;
 }
 
 /* TEXT */
+
 .services-text {
   margin-top: 20px;
+
   color: #666;
   max-width: 600px;
 }
 
 /* ===================== */
-/* GRIDS */
+/* GRID */
 /* ===================== */
 
 .services-grid {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+
   gap: 15px;
+
   width: 100%;
   margin-top: 10px;
 }
@@ -152,11 +151,12 @@
   flex-direction: column;
   align-items: center;
 
-  background: rgba(255, 255, 255, 0.75);
-  backdrop-filter: blur(6px);
+  padding: 25px;
 
   border-radius: 20px;
-  padding: 25px;
+
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(6px);
 
   cursor: pointer;
 
@@ -165,12 +165,15 @@
 
 .card .icon {
   font-size: 30px;
+
   color: #b89878;
+
   margin-bottom: 10px;
 }
 
 .card:hover {
   transform: translateY(-6px);
+
   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
 }
 
@@ -181,7 +184,9 @@
 .steps {
   display: flex;
   flex-direction: column;
+
   gap: 15px;
+
   width: 100%;
 }
 
@@ -190,25 +195,29 @@
   align-items: center;
   justify-content: center;
 
-  background: rgba(255, 255, 255, 0.8);
-  border-radius: 20px;
-  padding: 20px;
   gap: 15px;
+
+  padding: 20px;
+
+  border-radius: 20px;
+
+  background: rgba(255, 255, 255, 0.8);
 
   transition: all 0.3s ease;
 }
 
 .step span {
-  background: #b89878;
-  color: white;
-
-  border-radius: 50%;
   width: 30px;
   height: 30px;
 
   display: flex;
   align-items: center;
   justify-content: center;
+
+  border-radius: 50%;
+
+  background: #b89878;
+  color: white;
 }
 
 /* ===================== */
@@ -219,7 +228,9 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+
   gap: 15px;
+
   width: 100%;
   margin-top: 10px;
 }
@@ -228,19 +239,25 @@
   flex: 1 1 220px;
   max-width: 280px;
 
-  background: white;
-  border-radius: 20px;
   padding: 25px;
+
+  border-radius: 20px;
+
+  background: white;
 
   text-align: center;
 
-  transition: 0.3s ease;
+  transition: all 0.3s ease;
 }
 
 .price-card span {
-  font-size: 20px;
+  display: block;
+
   margin-top: 10px;
+
+  font-size: 20px;
   font-weight: bold;
+
   color: #b89878;
 }
 
@@ -258,7 +275,7 @@
 }
 
 /* ===================== */
-/* GLOBAL ANIMATIONS */
+/* ANIMATIONS */
 /* ===================== */
 
 .card,
@@ -273,17 +290,30 @@
 
 @media (max-width: 768px) {
   .about-hero {
-    height: 240px;
-    border-radius: 15px;
+    height: 260px;
+    border-radius: 16px;
   }
 
-  .about-hero h1 {
-    font-size: 28px;
+  .hero-overlay {
+    justify-content: center;
+    align-items: center;
+
+    padding: 20px;
   }
 
-  .services-subtitle {
+  .hero-content {
+    align-items: center;
+    text-align: center;
+
+    max-width: 100%;
+  }
+
+  .hero-content h1 {
+    font-size: 30px;
+  }
+
+  .hero-subtitle {
     font-size: 14px;
-    padding: 0 10px;
   }
 
   .step {
